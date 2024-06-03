@@ -1,0 +1,1143 @@
+{
+  "objectIdFieldName": "OBJECTID",
+  "uniqueIdField": {
+    "name": "OBJECTID",
+    "isSystemMaintained": true
+  },
+  "globalIdFieldName": "",
+  "geometryType": "esriGeometryPoint",
+  "spatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326
+  },
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ID",
+      "type": "esriFieldTypeInteger",
+      "alias": "ID",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "TRAEGER",
+      "type": "esriFieldTypeString",
+      "alias": "TRAEGER",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "LEISTUNGEN",
+      "type": "esriFieldTypeString",
+      "alias": "LEISTUNGEN",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "BEZEICHNUNG",
+      "type": "esriFieldTypeString",
+      "alias": "BEZEICHNUNG",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "KURZBEZEICHNUNG",
+      "type": "esriFieldTypeString",
+      "alias": "KURZBEZEICHNUNG",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "STRASSE",
+      "type": "esriFieldTypeString",
+      "alias": "STRASSE",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "PLZ",
+      "type": "esriFieldTypeString",
+      "alias": "PLZ",
+      "sqlType": "sqlTypeOther",
+      "length": 5,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ORT",
+      "type": "esriFieldTypeString",
+      "alias": "ORT",
+      "sqlType": "sqlTypeOther",
+      "length": 10,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "TELEFON",
+      "type": "esriFieldTypeString",
+      "alias": "TELEFON",
+      "sqlType": "sqlTypeOther",
+      "length": 50,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "EMAIL",
+      "type": "esriFieldTypeString",
+      "alias": "EMAIL",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "FAX",
+      "type": "esriFieldTypeString",
+      "alias": "FAX",
+      "sqlType": "sqlTypeOther",
+      "length": 20,
+      "domain": null,
+      "defaultValue": null
+    }
+  ],
+  "features": [
+    {
+      "attributes": {
+        "OBJECTID": 1,
+        "ID": 1,
+        "TRAEGER": "Regenbogenbus e. V. ",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Wittgensdorfer Straße 121a",
+        "PLZ": "09114",
+        "ORT": "Chemnitz",
+        "TELEFON": "0176 56707782",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.885036060313473,
+        "y": 50.86333899054661
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 2,
+        "ID": 2,
+        "TRAEGER": "Regenbogenbus e. V. ",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Wittgensdorfer Straße 121",
+        "PLZ": "09114",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 2786887-10\n0176 56721413",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.886425332850573,
+        "y": 50.86224593469508
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 3,
+        "ID": 3,
+        "TRAEGER": "Arbeiterwohlfahrt Soziale Dienste Chemnitz und Umgebung gGmbH",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Sandstraße 102",
+        "PLZ": "09114",
+        "ORT": "Chemnitz",
+        "TELEFON": null,
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.898026729560554,
+        "y": 50.86201867200133
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 4,
+        "ID": 4,
+        "TRAEGER": "Arbeiterwohlfahrt Soziale Dienste Chemnitz und Umgebung gGmbH",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "August-Bebel-Straße (Grüna) 7",
+        "PLZ": "09224",
+        "ORT": "Chemnitz",
+        "TELEFON": "0172 1461720",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.785757098248421,
+        "y": 50.81341549804806
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 5,
+        "ID": 5,
+        "TRAEGER": "solaris Förderzentrum für Jugend & Umwelt gGmbH Sachsen",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Guerickestraße 38",
+        "PLZ": "09116",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 815760\n0176 1381 0815",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.873375293321073,
+        "y": 50.82298332018087
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 6,
+        "ID": 6,
+        "TRAEGER": "Selbsthilfe Wohnprojekt Further Straße e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Lennéstraße 1",
+        "PLZ": "09117",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 8157527\n0174 3522231",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.825125822599613,
+        "y": 50.8115128110385
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 7,
+        "ID": 7,
+        "TRAEGER": "Selbsthilfe Wohnprojekt Further Straße e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Albert-Schweitzer-Straße 61",
+        "PLZ": "09116",
+        "ORT": "Chemnitz",
+        "TELEFON": "0157 80549073",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.882357439342707,
+        "y": 50.83999112547952
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 8,
+        "ID": 8,
+        "TRAEGER": "Regenbogenbus e. V. ",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Arthur-Bretschneider-Straße 17",
+        "PLZ": "09113",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 374360\n0157 33972736",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.901360603160697,
+        "y": 50.84508803255143
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 9,
+        "ID": 9,
+        "TRAEGER": "Selbsthilfe Wohnprojekt Further Straße e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Ernst-Heilmann-Straße 11",
+        "PLZ": "09116",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371  3691415\n01577 6372129\n0176 73511217",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.884042270194543,
+        "y": 50.832554610452455
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 10,
+        "ID": 10,
+        "TRAEGER": "Regenbogenbus e. V. ",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Flemmingstraße 8g",
+        "PLZ": "09116",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371  80818146",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.87674914752201,
+        "y": 50.8425583937128
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 11,
+        "ID": 11,
+        "TRAEGER": "solaris Förderzentrum für Jugend & Umwelt gGmbH Sachsen",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Fritz-Matschke-Straße 21",
+        "PLZ": "09113",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 3741914\n0176 168 550 43",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.902693575413581,
+        "y": 50.84130400292364
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 12,
+        "ID": 12,
+        "TRAEGER": "solaris Förderzentrum für Jugend & Umwelt gGmbH Sachsen",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Fritz-Matschke-Straße 23",
+        "PLZ": "09113",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 3741917\n0176 138 108 09",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.902795093273502,
+        "y": 50.841618951993816
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 13,
+        "ID": 13,
+        "TRAEGER": "inpeos e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Heinrich-Beck-Straße 2",
+        "PLZ": "09112",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 302956\n0151 654 780 76 ",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.908050078603239,
+        "y": 50.829255202729385
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 14,
+        "ID": 14,
+        "TRAEGER": "inpeos e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Henriettenstraße 35",
+        "PLZ": "09112",
+        "ORT": "Chemnitz",
+        "TELEFON": "0176 14622579",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.902422246448936,
+        "y": 50.83543105601474
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 15,
+        "ID": 15,
+        "TRAEGER": "solaris Förderzentrum für Jugend & Umwelt gGmbH Sachsen",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Hohe Straße 35",
+        "PLZ": "09112",
+        "ORT": "Chemnitz",
+        "TELEFON": "01761 6855039",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.911862861038992,
+        "y": 50.835266831280705
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 16,
+        "ID": 16,
+        "TRAEGER": "solaris Förderzentrum für Jugend & Umwelt gGmbH Sachsen",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Josephinenplatz 9",
+        "PLZ": "09113",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 4497-950\n0176 16855037\n",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.929649219000636,
+        "y": 50.84987076974014
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 17,
+        "ID": 17,
+        "TRAEGER": "Selbsthilfe Wohnprojekt Further Straße e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Reichsstraße 45",
+        "PLZ": "09112",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 3816523\n0157 76372125",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.906850455902491,
+        "y": 50.83544760808395
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 18,
+        "ID": 18,
+        "TRAEGER": "Regenbogenbus e. V. ",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Richard-Wagner-Straße 76",
+        "PLZ": "09120",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 2720918",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.899460028391776,
+        "y": 50.814759389892416
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 19,
+        "ID": 19,
+        "TRAEGER": "solaris Förderzentrum für Jugend & Umwelt gGmbH Sachsen",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Scheffelstraße 18",
+        "PLZ": "09120",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 2815717\n0176 16855036",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.8928433256839,
+        "y": 50.8030042437469
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 20,
+        "ID": 20,
+        "TRAEGER": "Arbeiterwohlfahrt Soziale Dienste Chemnitz und Umgebung gGmbH",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Straße Usti nad Labem 277",
+        "PLZ": "09119",
+        "ORT": "Chemnitz",
+        "TELEFON": "0163 4158153 ",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.885622224287136,
+        "y": 50.8057303827128
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 21,
+        "ID": 21,
+        "TRAEGER": "Arbeiterwohlfahrt Soziale Dienste Chemnitz und Umgebung gGmbH",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Straße Usti nad Labem 279",
+        "PLZ": "09119",
+        "ORT": "Chemnitz",
+        "TELEFON": "\n0162 214 3737",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.885080710163107,
+        "y": 50.80526213588403
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 22,
+        "ID": 22,
+        "TRAEGER": "KINDERLAND-Sachsen e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Albert-Köhler-Straße 48",
+        "PLZ": "09122",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 2660125\n0177343 2570\n",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.88894232665042,
+        "y": 50.79303114663459
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 23,
+        "ID": 23,
+        "TRAEGER": "KINDERLAND-Sachsen e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Arno-Schreiter-Straße 1",
+        "PLZ": "09123",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 262121 915\n0177 3432570",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.902724392555049,
+        "y": 50.791484750276624
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 24,
+        "ID": 24,
+        "TRAEGER": "inpeos e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Alfred-Neubert-Straße 25",
+        "PLZ": "09123",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 2660217",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.901955700183862,
+        "y": 50.78408359450152
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 25,
+        "ID": 25,
+        "TRAEGER": "Kinder-, Jugend- und Familienhilfe e. V. Chemnitz",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Arno-Schreiter-Straße 1",
+        "PLZ": "09123",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 3816622\n0160-93941924",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.902724392555049,
+        "y": 50.791484750276624
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 26,
+        "ID": 26,
+        "TRAEGER": "Arbeiterwohlfahrt Soziale Dienste Chemnitz und Umgebung gGmbH",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Max-Türpe-Straße 58",
+        "PLZ": "09122",
+        "ORT": "Chemnitz",
+        "TELEFON": "01634158171",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.887276265842216,
+        "y": 50.79227491024383
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 27,
+        "ID": 27,
+        "TRAEGER": "Regenbogenbus e. V. ",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "An der Markthalle 10",
+        "PLZ": "09111",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 67521130",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.916247901113596,
+        "y": 50.83531072129914
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 28,
+        "ID": 28,
+        "TRAEGER": "Kinder-, Jugend- und Familienhilfe e. V. Chemnitz",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Brauhausstraße 16",
+        "PLZ": "09111",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 36913120\n0160 93941956",
+        "EMAIL": null,
+        "FAX": "037149502728 0371495"
+      },
+      "geometry": {
+        "x": 12.92182987221165,
+        "y": 50.82805392528311
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 29,
+        "ID": 29,
+        "TRAEGER": "Kinder-, Jugend- und Familienhilfe e. V. Chemnitz",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Brauhausstraße 16",
+        "PLZ": "09111",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 36913117\n0160 93942068",
+        "EMAIL": null,
+        "FAX": "037149502128"
+      },
+      "geometry": {
+        "x": 12.92182987221165,
+        "y": 50.82805392528311
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 30,
+        "ID": 30,
+        "TRAEGER": "KINDERVEREINIGUNG Chemnitz e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Augsburger Straße 32",
+        "PLZ": "09126",
+        "ORT": "Chemnitz",
+        "TELEFON": "0163 7027853",
+        "EMAIL": null,
+        "FAX": "0371 5212865"
+      },
+      "geometry": {
+        "x": 12.939923406250776,
+        "y": 50.815844361682586
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 31,
+        "ID": 31,
+        "TRAEGER": "KINDERVEREINIGUNG Chemnitz e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Bernsdorfer Straße 126",
+        "PLZ": "09126",
+        "ORT": "Chemnitz",
+        "TELEFON": "0152 29997591\n0371 4027854\n",
+        "EMAIL": null,
+        "FAX": "0371 5212865"
+      },
+      "geometry": {
+        "x": 12.942169056117814,
+        "y": 50.81591741473485
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 32,
+        "ID": 32,
+        "TRAEGER": "Kinder-, Jugend- und Familienhilfe e. V. Chemnitz",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Brühl 59",
+        "PLZ": "09111",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 4714117   0371 49502100",
+        "EMAIL": null,
+        "FAX": "0371 49502128"
+      },
+      "geometry": {
+        "x": 12.924914650048374,
+        "y": 50.843412224729704
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 33,
+        "ID": 33,
+        "TRAEGER": "solaris Förderzentrum für Jugend & Umwelt gGmbH Sachsen",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Haydnstraße 21",
+        "PLZ": "09119",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 3691615",
+        "EMAIL": null,
+        "FAX": "0371 3685501"
+      },
+      "geometry": {
+        "x": 12.901345159645743,
+        "y": 50.81781000833815
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 34,
+        "ID": 34,
+        "TRAEGER": "Arbeiterwohlfahrt Soziale Dienste Chemnitz und Umgebung gGmbH    ",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Park der Opfer des Faschismus 2",
+        "PLZ": "09111",
+        "ORT": "Chemnitz",
+        "TELEFON": "0173 5171658         0371 6956182",
+        "EMAIL": null,
+        "FAX": "0371 6956105"
+      },
+      "geometry": {
+        "x": 12.930521541299386,
+        "y": 50.830423861532616
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 35,
+        "ID": 35,
+        "TRAEGER": "KINDERVEREINIGUNG Chemnitz e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Reichenhainer Straße 206",
+        "PLZ": "09125",
+        "ORT": "Chemnitz",
+        "TELEFON": "\n0152 299 975 85     0371 4027854",
+        "EMAIL": null,
+        "FAX": "0371 5212865"
+      },
+      "geometry": {
+        "x": 12.93725188194701,
+        "y": 50.80297053261766
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 36,
+        "ID": 36,
+        "TRAEGER": "Regenbogenbus e. V. ",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Schloßstraße 3",
+        "PLZ": "09111",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 488-8049\n0159 06501248 037200 88291",
+        "EMAIL": null,
+        "FAX": "0372 0081725"
+      },
+      "geometry": {
+        "x": 12.915651093702213,
+        "y": 50.838338363182764
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 37,
+        "ID": 37,
+        "TRAEGER": "Selbsthilfe Wohnprojekt Further Straße e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Schulstraße 2",
+        "PLZ": "09125",
+        "ORT": "Chemnitz",
+        "TELEFON": "\n01577 637 2127\n0179 439 3809\n",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.91101485246721,
+        "y": 50.799381331294086
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 38,
+        "ID": 38,
+        "TRAEGER": "Förderverein Chemnitzer Schulmodell e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Stollberger Straße 25",
+        "PLZ": "09119",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 69576486",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.91265888046003,
+        "y": 50.82392703831393
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 39,
+        "ID": 39,
+        "TRAEGER": "KINDERVEREINIGUNG Chemnitz e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Reichenhainer Straße 210",
+        "PLZ": "09125",
+        "ORT": "Chemnitz",
+        "TELEFON": "0152 299 975 93",
+        "EMAIL": null,
+        "FAX": "0371 5212865"
+      },
+      "geometry": {
+        "x": 12.936586997522001,
+        "y": 50.802884141863004
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 40,
+        "ID": 40,
+        "TRAEGER": "F+U Sachsen gGmbH     ",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Ludwig-Richter-Straße 19",
+        "PLZ": "09131",
+        "ORT": "Chemnitz",
+        "TELEFON": "0174 918 0871",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.948876582654156,
+        "y": 50.85272619881937
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 41,
+        "ID": 41,
+        "TRAEGER": "Don Bosco Sachsen",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Reinhardtstraße 6",
+        "PLZ": "09130",
+        "ORT": "Chemnitz",
+        "TELEFON": "03724 600\n0151 70388891\n",
+        "EMAIL": null,
+        "FAX": "03724 60910"
+      },
+      "geometry": {
+        "x": 12.939770759291099,
+        "y": 50.841262725248
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 42,
+        "ID": 42,
+        "TRAEGER": "Regenbogenbus e. V. ",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Heinrich-Schütz-Straße 61",
+        "PLZ": "09130",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 39893012",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.954409907451021,
+        "y": 50.83943671972351
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 43,
+        "ID": 43,
+        "TRAEGER": "Kinder-, Jugend- und Familienhilfe e. V. Chemnitz",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Humboldtplatz 1",
+        "PLZ": "09130",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 39892836",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.948060056985298,
+        "y": 50.835351159452536
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 44,
+        "ID": 44,
+        "TRAEGER": "Don Bosco Sachsen",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Ludwig-Kirsch-Straße 27",
+        "PLZ": "09130",
+        "ORT": "Chemnitz",
+        "TELEFON": "0175 7015847",
+        "EMAIL": null,
+        "FAX": "0371 43316270"
+      },
+      "geometry": {
+        "x": 12.94122647418176,
+        "y": 50.83649726829562
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 45,
+        "ID": 45,
+        "TRAEGER": "Don Bosco Sachsen",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Ludwig-Kirsch-Straße 27",
+        "PLZ": "09130",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 43316013\n0175 701 4956\n0171 566 0262\n",
+        "EMAIL": null,
+        "FAX": "0371 43316270"
+      },
+      "geometry": {
+        "x": 12.94122647418176,
+        "y": 50.83649726829562
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 46,
+        "ID": 46,
+        "TRAEGER": "Stadtmission Chemnitz e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Tschaikowskistraße 49",
+        "PLZ": "09130",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 4331970\n0175 2218432",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.93865790695395,
+        "y": 50.837232449280734
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 47,
+        "ID": 47,
+        "TRAEGER": "Don Bosco Sachsen",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Uhlandstraße 2",
+        "PLZ": "09130",
+        "ORT": "Chemnitz",
+        "TELEFON": "0171 5660262",
+        "EMAIL": null,
+        "FAX": "0371 43316270"
+      },
+      "geometry": {
+        "x": 12.935366896466746,
+        "y": 50.83585676716109
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 48,
+        "ID": 48,
+        "TRAEGER": "Regenbogenbus e. V. ",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Ernst-Moritz-Arndt-Straße 1a",
+        "PLZ": "09130",
+        "ORT": "Chemnitz",
+        "TELEFON": "0176 45992551",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.966572816727261,
+        "y": 50.8316116358909
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 49,
+        "ID": 49,
+        "TRAEGER": "Stadtmission Chemnitz e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Adelsbergstraße 90",
+        "PLZ": "09126",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371  52039891\n0177 9140042",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.952786237536666,
+        "y": 50.83100697332915
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 50,
+        "ID": 50,
+        "TRAEGER": "Verein zur Beruflichen Förderung und Ausbildung e. V. (VBFA)",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Ernst-Moritz-Arndt-Straße 4",
+        "PLZ": "09130",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 722139\n0174 5173621",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.962917779833731,
+        "y": 50.83199197874254
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 51,
+        "ID": 51,
+        "TRAEGER": "KINDERVEREINIGUNG Chemnitz e. V.",
+        "LEISTUNGEN": "Schulsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Kreherstraße 101",
+        "PLZ": "09127",
+        "ORT": "Chemnitz",
+        "TELEFON": "0163 7027852",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.954477908695733,
+        "y": 50.81961745389353
+      }
+    }
+  ]
+}
