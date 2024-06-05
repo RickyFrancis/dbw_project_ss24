@@ -14,7 +14,13 @@ router.delete('/entity/:id', () => {});
 /**
  * Schule
  */
-router.get('/schule', () => {});
+router.get('/schule', (req, res) => {
+  console.log('hello from schule');
+  res.status(200);
+  res.json({
+    message: 'Hello from schule!',
+  });
+});
 router.get('/schule/:id', () => {});
 router.post('/schule', () => {});
 router.put('/schule/:id', () => {});

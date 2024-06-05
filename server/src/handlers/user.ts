@@ -13,7 +13,7 @@ export const createNewUser = async (req, res) => {
   });
 
   const token = createJWT(user);
-  res.json({ token });
+  res.json({ name: user.name, email: user.email, token });
 };
 
 export const signin = async (req, res) => {
@@ -21,14 +21,19 @@ export const signin = async (req, res) => {
     where: { email: req.body.email },
   });
 
-  const isValid = await comparePasswords(req.body.password, user.password);
+  const isPasswordValid = await comparePasswords(
+    req.body.password,
+    user.password
+  );
 
-  if (!isValid) {
+  if (!isPasswordValid) {
     res.status(401);
-    res.send('Invalid username or password');
+    res.json({
+      message: 'Invalid username or password',
+    });
     return;
   }
 
   const token = createJWT(user);
-  res.json({ token });
+  res.json({ name: user.name, email: user.email, token });
 };
