@@ -1,4 +1,7 @@
 import { Router } from 'express';
+import { body, validationResult } from 'express-validator';
+import { handleInputErrors } from './modules/middleware';
+import { getSchulen } from './handlers/schulen';
 
 const router = Router();
 
@@ -14,15 +17,14 @@ router.delete('/entity/:id', () => {});
 /**
  * Schule
  */
-router.get('/schule', (req, res) => {
-  console.log('hello from schule');
-  res.status(200);
-  res.json({
-    message: 'Hello from schule!',
-  });
-});
+router.get('/schule', getSchulen);
+
 router.get('/schule/:id', () => {});
-router.post('/schule', () => {});
+router.post(
+  '/schule',
+  [body('name').isString(), body('email').isEmail(), handleInputErrors],
+  (req, res) => {}
+);
 router.put('/schule/:id', () => {});
 router.delete('/schule/:id', () => {});
 

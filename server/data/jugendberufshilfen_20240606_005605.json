@@ -1,0 +1,323 @@
+{
+  "objectIdFieldName": "OBJECTID",
+  "uniqueIdField": {
+    "name": "OBJECTID",
+    "isSystemMaintained": true
+  },
+  "globalIdFieldName": "",
+  "geometryType": "esriGeometryPoint",
+  "spatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326
+  },
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ID",
+      "type": "esriFieldTypeInteger",
+      "alias": "ID",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "TRAEGER",
+      "type": "esriFieldTypeString",
+      "alias": "TRAEGER",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "LEISTUNGEN",
+      "type": "esriFieldTypeString",
+      "alias": "LEISTUNGEN",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "BEZEICHNUNG",
+      "type": "esriFieldTypeString",
+      "alias": "BEZEICHNUNG",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "KURZBEZEICHNUNG",
+      "type": "esriFieldTypeString",
+      "alias": "KURZBEZEICHNUNG",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "STRASSE",
+      "type": "esriFieldTypeString",
+      "alias": "STRASSE",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "PLZ",
+      "type": "esriFieldTypeString",
+      "alias": "PLZ",
+      "sqlType": "sqlTypeOther",
+      "length": 5,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ORT",
+      "type": "esriFieldTypeString",
+      "alias": "ORT",
+      "sqlType": "sqlTypeOther",
+      "length": 10,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "TELEFON",
+      "type": "esriFieldTypeString",
+      "alias": "TELEFON",
+      "sqlType": "sqlTypeOther",
+      "length": 50,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "EMAIL",
+      "type": "esriFieldTypeString",
+      "alias": "EMAIL",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "FAX",
+      "type": "esriFieldTypeString",
+      "alias": "FAX",
+      "sqlType": "sqlTypeOther",
+      "length": 20,
+      "domain": null,
+      "defaultValue": null
+    }
+  ],
+  "features": [
+    {
+      "attributes": {
+        "OBJECTID": 1,
+        "ID": 1,
+        "TRAEGER": "Verein zur Beruflichen Förderung und Ausbildung e. V. (VBFA)",
+        "LEISTUNGEN": "arbeitsweltbezogene Jugendsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Waldenburger Straße 63",
+        "PLZ": "09116",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371  3824316",
+        "EMAIL": null,
+        "FAX": "0371 3824315"
+      },
+      "geometry": {
+        "x": 12.877488805849918,
+        "y": 50.83105855859037
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 2,
+        "ID": 2,
+        "TRAEGER": "Jugendberufshilfe Chemnitz gGmbH",
+        "LEISTUNGEN": "arbeitsweltbezogene Jugendsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Straße Usti nad Labem 43",
+        "PLZ": "09119",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 4004972",
+        "EMAIL": null,
+        "FAX": "0371 4004966"
+      },
+      "geometry": {
+        "x": 12.890474810194075,
+        "y": 50.80993095127203
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 3,
+        "ID": 3,
+        "TRAEGER": "Jugendberufshilfe Chemnitz gGmbH",
+        "LEISTUNGEN": "arbeitsweltbezogene Jugendsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Straße Usti nad Labem 43",
+        "PLZ": "09119",
+        "ORT": "Chemnitz",
+        "TELEFON": "3714004990",
+        "EMAIL": null,
+        "FAX": "0371 4004966"
+      },
+      "geometry": {
+        "x": 12.890474810194075,
+        "y": 50.80993095127203
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 4,
+        "ID": 4,
+        "TRAEGER": "Selbsthilfe 91 e. V.",
+        "LEISTUNGEN": "arbeitsweltbezogene Jugendsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Zwickauer Straße 6",
+        "PLZ": "09112",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 369230\n0371 533450",
+        "EMAIL": null,
+        "FAX": "0371 3692321"
+      },
+      "geometry": {
+        "x": 12.91456129778549,
+        "y": 50.830248228944974
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 5,
+        "ID": 5,
+        "TRAEGER": "Selbsthilfe 91 e. V.",
+        "LEISTUNGEN": "arbeitsweltbezogene Jugendsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Zwickauer Straße 6",
+        "PLZ": "09112",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 369230",
+        "EMAIL": null,
+        "FAX": "0371 3692321"
+      },
+      "geometry": {
+        "x": 12.91456129778549,
+        "y": 50.830248228944974
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 6,
+        "ID": 6,
+        "TRAEGER": "Stadtmission Chemnitz e. V.",
+        "LEISTUNGEN": "arbeitsweltbezogene Jugendsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Rembrandtstraße 13b",
+        "PLZ": "09111",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 6004814           0371 4334132",
+        "EMAIL": null,
+        "FAX": "0371 6004813        "
+      },
+      "geometry": {
+        "x": 12.929551905884074,
+        "y": 50.827718797598166
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 7,
+        "ID": 7,
+        "TRAEGER": "Verein zur Beruflichen Förderung und Ausbildung e. V. (VBFA)",
+        "LEISTUNGEN": "arbeitsweltbezogene Jugendsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Heinrich-Lorenz-Straße 20",
+        "PLZ": "09120",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 91881285\n0177 4755323",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.911297583736152,
+        "y": 50.814437487333706
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 8,
+        "ID": 8,
+        "TRAEGER": "Jugendberufshilfe Chemnitz gGmbH",
+        "LEISTUNGEN": "arbeitsweltbezogene Jugendsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Heinrich-Lorenz-Straße 20",
+        "PLZ": "09120",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 28300587\n0371 28307193",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.911297583736152,
+        "y": 50.814437487333706
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 9,
+        "ID": 9,
+        "TRAEGER": "Selbsthilfe 91 e. V.",
+        "LEISTUNGEN": "arbeitsweltbezogene Jugendsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Zwickauer Straße 6",
+        "PLZ": "09112",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371 533450 0371 369230",
+        "EMAIL": null,
+        "FAX": "0371 3692321"
+      },
+      "geometry": {
+        "x": 12.91456129778549,
+        "y": 50.830248228944974
+      }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 10,
+        "ID": 10,
+        "TRAEGER": "Stadtmission Chemnitz e. V.",
+        "LEISTUNGEN": "arbeitsweltbezogene Jugendsozialarbeit",
+        "BEZEICHNUNG": null,
+        "KURZBEZEICHNUNG": null,
+        "STRASSE": "Dresdner Straße 214",
+        "PLZ": "09131",
+        "ORT": "Chemnitz",
+        "TELEFON": "0371  45200449",
+        "EMAIL": null,
+        "FAX": null
+      },
+      "geometry": {
+        "x": 12.95791606462447,
+        "y": 50.852483248452195
+      }
+    }
+  ]
+}

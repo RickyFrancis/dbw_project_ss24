@@ -20,7 +20,7 @@ model User {
   name      String
   password  String
   createdAt DateTime @default(now())
-  updatedAt DateTime
+  updatedAt DateTime @updatedAt
   address   Address?
 }
 
@@ -30,7 +30,7 @@ model Address {
   street2    String?  @db.VarChar(255) // Additional street address information, such as apartment or suite number
   city       String   @db.VarChar(100) // City
   state      String?  @db.VarChar(100) // State, province, or region
-  postalCode String   @db.VarChar(20) // Postal or zip code
+  postalCode String   @db.VarChar(50) // Postal or zip code
   country    String   @db.VarChar(100) // Country
   user       User     @relation(fields: [userId], references: [id])
   userId     Int      @unique // relation scalar field (used in the `@relation` attribute above)
@@ -39,91 +39,95 @@ model Address {
 }
 
 model Schule {
-  OBJECTID          Int      @id @default(autoincrement()) // Object ID
-  ID                Int // ID
+  id                Int       @id @default(autoincrement())
+  API_OBJECTID      Int       @unique // Object ID
+  API_ID            Int       @unique // ID
   TYP               Int // Type
-  ART               String   @db.VarChar(45) // Category
-  STANDORTTYP       String   @db.Char(1) // Location Type
-  BEZEICHNUNG       String?  @db.VarChar(255) // Designation
-  BEZEICHNUNGZUSATZ String?  @db.VarChar(255) // Additional Designation
-  KURZBEZEICHNUNG   String?  @db.VarChar(50) // Short Designation
-  STRASSE           String?  @db.VarChar(200) // Street
-  PLZ               String?  @db.VarChar(200) // Postal Code
-  ORT               String?  @db.VarChar(10) // City
-  TELEFON           String?  @db.VarChar(20) // Telephone
-  FAX               String?  @db.VarChar(20) // Fax
-  EMAIL             String?  @db.VarChar(55) // Email
-  PROFILE           String?  @db.VarChar(255) // Profile
-  SPRACHEN          String?  @db.VarChar(255) // Languages
-  WWW               String?  @db.VarChar(255) // Website
-  TRAEGER           String?  @db.VarChar(60) // Operator
-  TRAEGERTYP        Int // Operator Type
-  BEZUGNR           String   @db.Char(3) // Reference Number
-  GEBIETSARTNUMMER  Int // Area Type Number
-  SNUMMER           Float // Serial Number
-  NUMMER            Float // Number
-  GlobalID          String   @default(uuid()) @db.VarChar(38) // Global ID
-  CreationDate      DateTime @default(now()) // Creation Date
-  Creator           String   @db.VarChar(128) // Creator
-  EditDate          DateTime @default(now()) // Edit Date
-  Editor            String   @db.VarChar(128) // Editor
-  x                 Float    @db.Double // Geometry x-coordinate
-  y                 Float    @db.Double // Geometry y-coordinate
+  ART               String    @db.VarChar(50) // Category
+  STANDORTTYP       String?   @db.Char(50) // Location Type
+  BEZEICHNUNG       String?   @db.VarChar(255) // Designation
+  BEZEICHNUNGZUSATZ String?   @db.VarChar(255) // Additional Designation
+  KURZBEZEICHNUNG   String?   @db.VarChar(50) // Short Designation
+  STRASSE           String?   @db.VarChar(200) // Street
+  PLZ               String?   @db.VarChar(200) // Postal Code
+  ORT               String?   @db.VarChar(50) // City
+  TELEFON           String?   @db.VarChar(50) // Telephone
+  FAX               String?   @db.VarChar(50) // Fax
+  EMAIL             String?   @db.VarChar(55) // Email
+  PROFILE           String?   @db.VarChar(255) // Profile
+  SPRACHEN          String?   @db.VarChar(255) // Languages
+  WWW               String?   @db.VarChar(255) // Website
+  TRAEGER           String?   @db.VarChar(60) // Operator
+  TRAEGERTYP        Int? // Operator Type
+  BEZUGNR           String?   @db.Char(50) // Reference Number
+  GEBIETSARTNUMMER  Int? // Area Type Number
+  SNUMMER           Float? // Serial Number
+  NUMMER            Float? // Number
+  GlobalID          String?   @default(uuid()) @db.VarChar(38) // Global ID
+  CreationDate      DateTime? @default(now()) // Creation Date
+  Creator           String?   @db.VarChar(128) // Creator
+  EditDate          DateTime? @default(now()) // Edit Date
+  Editor            String?   @db.VarChar(128) // Editor
+  x                 Float     @db.Double // Geometry x-coordinate
+  y                 Float     @db.Double // Geometry y-coordinate
 }
 
 model Kindertageseinrichtung {
-  OBJECTID        Int     @id @default(autoincrement()) // Object ID
-  ID              Int // ID
-  TRAEGER         String  @db.VarChar(50) // Provider
-  BEZEICHNUNG     String  @db.VarChar(100) // Designation
-  KURZBEZEICHNUNG String  @db.VarChar(100) // Short Designation
-  STRASSE         String  @db.VarChar(24) // Street
-  STRSCHL         String  @db.VarChar(50) // Street Key
-  HAUSBEZ         String  @db.VarChar(5) // House Number
-  PLZ             String  @db.VarChar(50) // Postal Code
-  ORT             String  @db.VarChar(50) // City
-  HORT            Int // After School Care (Boolean as integer: 0 or 1)
-  KITA            Int // Daycare Center (Boolean as integer: 0 or 1)
+  id              Int     @id @default(autoincrement())
+  API_OBJECTID    Int     @unique // Object ID
+  API_ID          Int     @unique // ID
+  TRAEGER         String? @db.VarChar(255) // Provider
+  BEZEICHNUNG     String? @db.VarChar(255) // Designation
+  KURZBEZEICHNUNG String? @db.VarChar(255) // Short Designation
+  STRASSE         String? @db.VarChar(255) // Street
+  STRSCHL         String? @db.VarChar(255) // Street Key
+  HAUSBEZ         String? @db.VarChar(255) // House Number
+  PLZ             String? @db.VarChar(255) // Postal Code
+  ORT             String? @db.VarChar(255) // City
+  HORT            Int? // After School Care (Boolean as integer: 0 or 1)
+  KITA            Int? // Daycare Center (Boolean as integer: 0 or 1)
   URL             String? @db.VarChar(255) // URL
   TELEFON         String? @db.VarChar(255) // Telephone
-  FAX             String? @db.VarChar(50) // Fax
-  EMAIL           String? @db.VarChar(50) // Email
-  BARRIEREFREI    Int // Accessible (Boolean as integer: 0 or 1)
-  INTEGRATIV      Int // Integrative (Boolean as integer: 0 or 1)
+  FAX             String? @db.VarChar(255) // Fax
+  EMAIL           String? @db.VarChar(255) // Email
+  BARRIEREFREI    Int? // Accessible (Boolean as integer: 0 or 1)
+  INTEGRATIV      Int? // Integrative (Boolean as integer: 0 or 1)
   x               Float   @db.Double // Geometry x-coordinate
   y               Float   @db.Double // Geometry y-coordinate
 }
 
 model Schulsozialarbeit {
-  OBJECTID        Int     @id @default(autoincrement()) // Object ID
-  ID              Int // ID
+  id              Int     @id @default(autoincrement())
+  API_OBJECTID    Int     @unique // Object ID
+  API_ID          Int     @unique // ID
   TRAEGER         String  @db.VarChar(255) // Provider
   LEISTUNGEN      String  @db.VarChar(255) // Services
   BEZEICHNUNG     String? @db.VarChar(255) // Designation
   KURZBEZEICHNUNG String? @db.VarChar(255) // Short Designation
   STRASSE         String? @db.VarChar(255) // Street
-  PLZ             String  @db.VarChar(5) // Postal Code
-  ORT             String  @db.VarChar(10) // City
+  PLZ             String  @db.VarChar(50) // Postal Code
+  ORT             String  @db.VarChar(50) // City
   TELEFON         String? @db.VarChar(50) // Telephone
   EMAIL           String? @db.VarChar(255) // Email
-  FAX             String? @db.VarChar(20) // Fax
+  FAX             String? @db.VarChar(50) // Fax
   x               Float   @db.Double // Geometry x-coordinate
   y               Float   @db.Double // Geometry y-coordinate
 }
 
 model Jugendberufshilfe {
-  OBJECTID        Int     @id @default(autoincrement()) // Object ID
-  ID              Int // ID
+  id              Int     @id @default(autoincrement())
+  API_OBJECTID    Int     @unique // Object ID
+  API_ID          Int     @unique // ID
   TRAEGER         String  @db.VarChar(255) // Provider
   LEISTUNGEN      String  @db.VarChar(255) // Services
   BEZEICHNUNG     String? @db.VarChar(255) // Designation
   KURZBEZEICHNUNG String? @db.VarChar(255) // Short Designation
   STRASSE         String? @db.VarChar(255) // Street
-  PLZ             String  @db.VarChar(5) // Postal Code
-  ORT             String  @db.VarChar(10) // City
+  PLZ             String  @db.VarChar(50) // Postal Code
+  ORT             String  @db.VarChar(50) // City
   TELEFON         String? @db.VarChar(50) // Telephone
   EMAIL           String? @db.VarChar(255) // Email
-  FAX             String? @db.VarChar(20) // Fax
+  FAX             String? @db.VarChar(50) // Fax
   x               Float   @db.Double // Geometry x-coordinate
   y               Float   @db.Double // Geometry y-coordinate
 }
@@ -136,13 +140,14 @@ enum EntityType {
 }
 
 model Entity {
-  OBJECTID          Int        @id @default(autoincrement()) // Object ID
-  ID                Int // ID
+  id                Int        @id @default(autoincrement())
+  API_OBJECTID      Int        @unique // Object ID
+  API_ID            Int        @unique // ID
   EntityType        EntityType // Type of the entity (Schule, Kindertageseinrichtung, Schulsozialarbeit, Jugendberufshilfe)
   TRAEGER           String     @db.VarChar(255) // Provider
   LEISTUNGEN        String?    @db.VarChar(255) // Services
-  ART               String?    @db.VarChar(45) // Category (specific to Schule)
-  STANDORTTYP       String?    @db.Char(1) // Location Type (specific to Schule)
+  ART               String?    @db.VarChar(50) // Category (specific to Schule)
+  STANDORTTYP       String?    @db.Char(50) // Location Type (specific to Schule)
   BEZEICHNUNG       String?    @db.VarChar(255) // Designation
   BEZEICHNUNGZUSATZ String?    @db.VarChar(255) // Additional Designation (specific to Schule)
   KURZBEZEICHNUNG   String?    @db.VarChar(255) // Short Designation
@@ -156,11 +161,11 @@ model Entity {
   SPRACHEN          String?    @db.VarChar(255) // Languages (specific to Schule)
   WWW               String?    @db.VarChar(255) // Website (specific to Schule)
   TRAEGERTYP        Int? // Operator Type (specific to Schule)
-  BEZUGNR           String?    @db.Char(3) // Reference Number (specific to Schule)
+  BEZUGNR           String?    @db.Char(50) // Reference Number (specific to Schule)
   GEBIETSARTNUMMER  Int? // Area Type Number (specific to Schule)
   SNUMMER           Float? // Serial Number (specific to Schule)
   NUMMER            Float? // Number (specific to Schule)
-  GlobalID          String     @default(uuid()) @db.VarChar(38) // Global ID
+  GlobalID          String     @db.VarChar(50) // Global ID
   CreationDate      DateTime   @default(now()) // Creation Date
   Creator           String     @db.VarChar(128) // Creator
   EditDate          DateTime   @default(now()) // Edit Date

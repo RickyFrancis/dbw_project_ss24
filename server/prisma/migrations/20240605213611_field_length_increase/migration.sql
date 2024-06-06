@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `Entity` MODIFY `ART` VARCHAR(50) NULL;
+
+-- AlterTable
+ALTER TABLE `Schule` MODIFY `ART` VARCHAR(50) NOT NULL;
