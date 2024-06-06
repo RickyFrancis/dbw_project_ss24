@@ -70,66 +70,74 @@ model Schule {
   Editor            String?   @db.VarChar(128) // Editor
   x                 Float     @db.Double // Geometry x-coordinate
   y                 Float     @db.Double // Geometry y-coordinate
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
 }
 
 model Kindertageseinrichtung {
-  id              Int     @id @default(autoincrement())
-  API_OBJECTID    Int     @unique // Object ID
-  API_ID          Int     @unique // ID
-  TRAEGER         String? @db.VarChar(255) // Provider
-  BEZEICHNUNG     String? @db.VarChar(255) // Designation
-  KURZBEZEICHNUNG String? @db.VarChar(255) // Short Designation
-  STRASSE         String? @db.VarChar(255) // Street
-  STRSCHL         String? @db.VarChar(255) // Street Key
-  HAUSBEZ         String? @db.VarChar(255) // House Number
-  PLZ             String? @db.VarChar(255) // Postal Code
-  ORT             String? @db.VarChar(255) // City
+  id              Int      @id @default(autoincrement())
+  API_OBJECTID    Int      @unique // Object ID
+  API_ID          Int      @unique // ID
+  TRAEGER         String?  @db.VarChar(255) // Provider
+  BEZEICHNUNG     String?  @db.VarChar(255) // Designation
+  KURZBEZEICHNUNG String?  @db.VarChar(255) // Short Designation
+  STRASSE         String?  @db.VarChar(255) // Street
+  STRSCHL         String?  @db.VarChar(255) // Street Key
+  HAUSBEZ         String?  @db.VarChar(255) // House Number
+  PLZ             String?  @db.VarChar(255) // Postal Code
+  ORT             String?  @db.VarChar(255) // City
   HORT            Int? // After School Care (Boolean as integer: 0 or 1)
   KITA            Int? // Daycare Center (Boolean as integer: 0 or 1)
-  URL             String? @db.VarChar(255) // URL
-  TELEFON         String? @db.VarChar(255) // Telephone
-  FAX             String? @db.VarChar(255) // Fax
-  EMAIL           String? @db.VarChar(255) // Email
+  URL             String?  @db.VarChar(255) // URL
+  TELEFON         String?  @db.VarChar(255) // Telephone
+  FAX             String?  @db.VarChar(255) // Fax
+  EMAIL           String?  @db.VarChar(255) // Email
   BARRIEREFREI    Int? // Accessible (Boolean as integer: 0 or 1)
   INTEGRATIV      Int? // Integrative (Boolean as integer: 0 or 1)
-  x               Float   @db.Double // Geometry x-coordinate
-  y               Float   @db.Double // Geometry y-coordinate
+  x               Float    @db.Double // Geometry x-coordinate
+  y               Float    @db.Double // Geometry y-coordinate
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Schulsozialarbeit {
-  id              Int     @id @default(autoincrement())
-  API_OBJECTID    Int     @unique // Object ID
-  API_ID          Int     @unique // ID
-  TRAEGER         String  @db.VarChar(255) // Provider
-  LEISTUNGEN      String  @db.VarChar(255) // Services
-  BEZEICHNUNG     String? @db.VarChar(255) // Designation
-  KURZBEZEICHNUNG String? @db.VarChar(255) // Short Designation
-  STRASSE         String? @db.VarChar(255) // Street
-  PLZ             String  @db.VarChar(50) // Postal Code
-  ORT             String  @db.VarChar(50) // City
-  TELEFON         String? @db.VarChar(50) // Telephone
-  EMAIL           String? @db.VarChar(255) // Email
-  FAX             String? @db.VarChar(50) // Fax
-  x               Float   @db.Double // Geometry x-coordinate
-  y               Float   @db.Double // Geometry y-coordinate
+  id              Int      @id @default(autoincrement())
+  API_OBJECTID    Int      @unique // Object ID
+  API_ID          Int      @unique // ID
+  TRAEGER         String   @db.VarChar(255) // Provider
+  LEISTUNGEN      String   @db.VarChar(255) // Services
+  BEZEICHNUNG     String?  @db.VarChar(255) // Designation
+  KURZBEZEICHNUNG String?  @db.VarChar(255) // Short Designation
+  STRASSE         String?  @db.VarChar(255) // Street
+  PLZ             String   @db.VarChar(50) // Postal Code
+  ORT             String   @db.VarChar(50) // City
+  TELEFON         String?  @db.VarChar(50) // Telephone
+  EMAIL           String?  @db.VarChar(255) // Email
+  FAX             String?  @db.VarChar(50) // Fax
+  x               Float    @db.Double // Geometry x-coordinate
+  y               Float    @db.Double // Geometry y-coordinate
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Jugendberufshilfe {
-  id              Int     @id @default(autoincrement())
-  API_OBJECTID    Int     @unique // Object ID
-  API_ID          Int     @unique // ID
-  TRAEGER         String  @db.VarChar(255) // Provider
-  LEISTUNGEN      String  @db.VarChar(255) // Services
-  BEZEICHNUNG     String? @db.VarChar(255) // Designation
-  KURZBEZEICHNUNG String? @db.VarChar(255) // Short Designation
-  STRASSE         String? @db.VarChar(255) // Street
-  PLZ             String  @db.VarChar(50) // Postal Code
-  ORT             String  @db.VarChar(50) // City
-  TELEFON         String? @db.VarChar(50) // Telephone
-  EMAIL           String? @db.VarChar(255) // Email
-  FAX             String? @db.VarChar(50) // Fax
-  x               Float   @db.Double // Geometry x-coordinate
-  y               Float   @db.Double // Geometry y-coordinate
+  id              Int      @id @default(autoincrement())
+  API_OBJECTID    Int      @unique // Object ID
+  API_ID          Int      @unique // ID
+  TRAEGER         String   @db.VarChar(255) // Provider
+  LEISTUNGEN      String   @db.VarChar(255) // Services
+  BEZEICHNUNG     String?  @db.VarChar(255) // Designation
+  KURZBEZEICHNUNG String?  @db.VarChar(255) // Short Designation
+  STRASSE         String?  @db.VarChar(255) // Street
+  PLZ             String   @db.VarChar(50) // Postal Code
+  ORT             String   @db.VarChar(50) // City
+  TELEFON         String?  @db.VarChar(50) // Telephone
+  EMAIL           String?  @db.VarChar(255) // Email
+  FAX             String?  @db.VarChar(50) // Fax
+  x               Float    @db.Double // Geometry x-coordinate
+  y               Float    @db.Double // Geometry y-coordinate
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 enum EntityType {
