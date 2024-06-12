@@ -3,7 +3,10 @@ import router from './router';
 import morgan from 'morgan';
 import cors from 'cors';
 import { protect } from './modules/auth';
-import { createNewUser, signin } from './handlers/user';
+import { createNewUser, login } from './handlers/user';
+import { handleInputErrors } from './modules/middleware';
+import { body } from 'express-validator';
+import { createNewUserValidator, loginValidator } from './modules/validator';
 
 const app = express();
 
@@ -21,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api', protect, router);
-app.post('/user', createNewUser);
-app.post('/signin', signin);
+app.post('/user', createNewUserValidator, createNewUser);
+app.post('/login', loginValidator, login);
 
 export default app;

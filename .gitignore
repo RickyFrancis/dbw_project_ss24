@@ -1,6 +1,7 @@
 # Dependency directories
 node_modules/
 dbinfo.txt
+client2
 
 # Environment variables
 .env

@@ -4,7 +4,8 @@ import * as bcrypt from 'bcrypt';
 export const createJWT = (user) => {
   const token = jwt.sign(
     { id: user.id, email: user.email },
-    process.env.JWT_SECRET
+    process.env.JWT_SECRET,
+    { expiresIn: '1d' }
   );
   return token;
 };
@@ -22,7 +23,6 @@ export const protect = (req, res, next) => {
 
   const [, token] = bearer.split(' ');
   if (!token) {
-    console.log('here');
     res.status(401);
     res.json({
       message: 'Not authorized',

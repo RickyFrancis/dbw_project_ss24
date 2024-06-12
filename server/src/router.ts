@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
 import { handleInputErrors } from './modules/middleware';
 import { getSchulen } from './handlers/schulen';
+import { getUserDetails } from './handlers/user';
 
 const router = Router();
 
@@ -17,6 +18,8 @@ router.delete('/entity/:id', () => {});
 /**
  * Schule
  */
+router.get('/user', getUserDetails);
+
 router.get('/schule', getSchulen);
 
 router.get('/schule/:id', () => {});

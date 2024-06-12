@@ -11,9 +11,43 @@ import prisma from '../db';
 // };
 
 export const getSchulen = async (req, res) => {
-  const schulen = await prisma.schule.findMany();
+  try {
+    // Retrieve query parameters
+    const { BEZEICHNUNG, STRASSE } = req.query;
 
-  res.json({ data: schulen });
+    const queryOptions = {
+      where: {},
+    };
+
+    if (BEZEICHNUNG) {
+      queryOptions.where = {
+        BEZEICHNUNG: {
+          contains: BEZEICHNUNG,
+        },
+      };
+    }
+    if (STRASSE) {
+      queryOptions.where = {
+        STRASSE: {
+          contains: STRASSE,
+        },
+      };
+    }
+
+    console.log(queryOptions);
+
+    // Execute the query with Prisma
+    const schulen = await prisma.schule.findMany(queryOptions);
+
+    // Send the response with the fetched data
+    res.json({ data: schulen });
+  } catch (error) {
+    console.log(error);
+    // Handle any errors during execution
+    res
+      .status(500)
+      .json({ error: 'An error occurred while retrieving the data.' });
+  }
 };
 
 // export const createUpdate = async (req, res) => {
