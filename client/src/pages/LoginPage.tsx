@@ -17,6 +17,8 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '../validationSchemas';
 import ErrorComponent from '../components/ErrorComponent';
+import Logo from '../static/logo/logo192.png';
+import { APP_NAME } from '../constants/appConstants';
 
 interface LoginFormInputs {
   email: string;
@@ -60,9 +62,33 @@ const LoginPage = () => {
       <Box sx={{ mt: 1 }}>
         <Card variant="outlined">
           <CardContent>
-            <Typography component="h1" variant="h3" textAlign={'center'}>
-              LOGIN
-            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <img
+                src={Logo}
+                alt=""
+                style={{
+                  marginLeft: '30px',
+                }}
+              />
+              <Typography
+                component="h1"
+                variant="h5"
+                textAlign={'center'}
+                gutterBottom
+              >
+                {APP_NAME}
+              </Typography>
+              <Typography component="h1" variant="h3" textAlign={'center'}>
+                LOGIN
+              </Typography>
+            </Box>
+
             <Box
               component="form"
               onSubmit={handleSubmit(onSubmit)}

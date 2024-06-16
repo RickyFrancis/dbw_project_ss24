@@ -3,6 +3,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../../app/store';
 import { logout } from '../auth/authSlice';
+import { setUser } from './userSlice';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -22,7 +23,8 @@ export const userApi = createApi({
       query: () => 'api/user',
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
-          await queryFulfilled;
+          const { data } = await queryFulfilled;
+          dispatch(setUser(data));
         } catch (err: unknown) {
           const error = err as {
             error: { status: number; data: { message: string } };

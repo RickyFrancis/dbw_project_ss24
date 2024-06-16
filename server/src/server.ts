@@ -3,7 +3,7 @@ import router from './router';
 import morgan from 'morgan';
 import cors from 'cors';
 import { protect } from './modules/auth';
-import { createNewUser, login } from './handlers/user';
+import { createNewUser, deleteUser, login } from './handlers/user';
 import { handleInputErrors } from './modules/middleware';
 import { body } from 'express-validator';
 import { createNewUserValidator, loginValidator } from './modules/validator';

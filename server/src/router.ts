@@ -2,7 +2,23 @@ import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
 import { handleInputErrors } from './modules/middleware';
 import { getSchulen } from './handlers/schulen';
-import { getUserDetails } from './handlers/user';
+import {
+  createAddress,
+  deleteAddress,
+  deleteUser,
+  getAddress,
+  getUserDetails,
+  toggleFavoriteJugend,
+  toggleFavoriteKinder,
+  toggleFavoriteSchule,
+  toggleFavoriteSozial,
+  updateAddress,
+  updateUser,
+} from './handlers/user';
+import { getSchulsozialarbeit } from './handlers/schulsozialarbeit';
+import { getJugendberufshilfen } from './handlers/jugendberufshilfen';
+import { getKindertageseinrichtungen } from './handlers/kindertageseinrichtungen';
+import { updateUserValidator } from './modules/validator';
 
 const router = Router();
 
@@ -16,19 +32,47 @@ router.put('/entity/:id', () => {});
 router.delete('/entity/:id', () => {});
 
 /**
- * Schule
+ * User
  */
 router.get('/user', getUserDetails);
+router.put('/user', updateUserValidator, updateUser);
+router.delete('/user', deleteUser);
 
-router.get('/schule', getSchulen);
+router.post('/user/address', createAddress);
+router.get('/user/address/:addressId', getAddress);
+router.delete('/user/address/:addressId', deleteAddress);
+router.put('/user/address/:addressId', updateAddress);
 
-router.get('/schule/:id', () => {});
 router.post(
-  '/schule',
-  [body('name').isString(), body('email').isEmail(), handleInputErrors],
-  (req, res) => {}
+  '/user/toggle-favorite-jugend/:jugendberufshilfe_id',
+  toggleFavoriteJugend
 );
-router.put('/schule/:id', () => {});
-router.delete('/schule/:id', () => {});
+router.post('/user/toggle-favorite-schule/:schule_id', toggleFavoriteSchule);
+router.post('/user/toggle-favorite-kinder/:kinder_id', toggleFavoriteKinder);
+router.post('/user/toggle-favorite-sozial/:sozial_id', toggleFavoriteSozial);
+
+/**
+ * Schule
+ */
+router.get('/schule', getSchulen);
+router.get('/schule/:id', () => {});
+
+/**
+ * schulsozialarbeit
+ */
+router.get('/schulsozialarbeit', getSchulsozialarbeit);
+router.get('/schulsozialarbeit/:id', () => {});
+
+/**
+ * jugendberufshilfe
+ */
+router.get('/jugendberufshilfe', getJugendberufshilfen);
+router.get('/jugendberufshilfe/:id', () => {});
+
+/**
+ * kindertageseinrichtung
+ */
+router.get('/kindertageseinrichtung', getKindertageseinrichtungen);
+router.get('/kindertageseinrichtung/:id', () => {});
 
 export default router;

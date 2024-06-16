@@ -7,6 +7,28 @@
   pointer-events: none;
 }
 
+.leaflet-popup-content p {
+  margin: 0 !important;
+}
+
+.leaflet-map-container {
+  height: 75vh;
+  width: '100%';
+  border: 1px solid lightgray;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+  .leaflet-popup {
+    max-width: 220px;
+  }
+
+  .more-info-card {
+    padding: 0 !important;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

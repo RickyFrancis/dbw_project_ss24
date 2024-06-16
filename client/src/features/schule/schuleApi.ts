@@ -5,11 +5,12 @@ import { RootState } from '../../app/store';
 import { logout } from '../auth/authSlice';
 import { SchuleApiResponse } from '../../types';
 import { setSchule } from './schuleSlice';
+import { BASE_API_URI } from '../../constants/appConstants';
 
 export const schuleApi = createApi({
   reducerPath: 'schuleApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/',
+    baseUrl: BASE_API_URI,
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {

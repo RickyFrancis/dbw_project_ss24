@@ -34,13 +34,11 @@ export const getSchulen = async (req, res) => {
       };
     }
 
-    console.log(queryOptions);
-
     // Execute the query with Prisma
     const schulen = await prisma.schule.findMany(queryOptions);
 
     // Send the response with the fetched data
-    res.json({ data: schulen });
+    res.json({ count: schulen.length, data: schulen });
   } catch (error) {
     console.log(error);
     // Handle any errors during execution

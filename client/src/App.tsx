@@ -1,5 +1,5 @@
 // src/App.tsx
-
+import './App.css';
 import {
   BrowserRouter,
   Routes,
@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { useGetUserQuery } from './features/user/userApi';
 import { selectToken } from './features/auth/authSlice';
 import { useEffect } from 'react';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   const token = useSelector(selectToken); // Access token from the Redux store
@@ -33,6 +34,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<PrivateRoute />}>
           <Route index element={<DashboardPage />} />
+          <Route path="/profile" element={<ProfilePage />} />{' '}
+          {/* Added route for /profile */}
         </Route>
       </Routes>
     </BrowserRouter>
