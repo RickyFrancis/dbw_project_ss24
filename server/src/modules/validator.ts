@@ -45,42 +45,10 @@ export const updateUserValidator = [
     .isEmpty()
     .withMessage('Name is required if provided'),
 
-  // Ensure addresses is an array if provided and perform nested validations
-  body('addresses')
-    .optional()
-    .isArray()
-    .withMessage('Addresses must be an array'),
-  body('addresses.*.street')
-    .optional()
-    .not()
-    .isEmpty()
-    .withMessage('Street address is required'),
-  body('addresses.*.city')
-    .optional()
-    .not()
-    .isEmpty()
-    .withMessage('City is required'),
-  body('addresses.*.postalCode')
-    .optional()
-    .not()
-    .isEmpty()
-    .withMessage('Postal code is required')
-    .matches(/^\d{5}(-\d{4})?$/, 'i'),
-  body('addresses.*.country')
-    .optional()
-    .not()
-    .isEmpty()
-    .withMessage('Country is required'),
-
-  // Optional fields for each address in the array
-  body('addresses.*.street2').optional(),
-  body('addresses.*.state').optional(),
-  body('addresses.*.primaryAddress').optional(),
-
   // Email and password are optional, validate only if provided
   body('email').optional().isEmail().withMessage('Invalid email format'),
   body('password')
-    .optional()
+    .optional({ checkFalsy: true })
     .isLength({ min: 8 })
     .withMessage('The minimum password length is 8 characters'),
 
@@ -113,5 +81,30 @@ export const updateAddressValidator = [
   body('address.state').optional(),
   handleInputErrors,
   body('addresses.*.primaryAddress').optional(),
+  handleInputErrors,
+];
+
+export const getDistanceValidator = [
+  body('coords1', 'coords1 is required').exists().notEmpty(),
+  body('coords1.latitude', 'coords1.latitude is required and must be a number')
+    .exists()
+    .isFloat(),
+  body(
+    'coords1.longitude',
+    'coords1.longitude is required and must be a number'
+  )
+    .exists()
+    .isFloat(),
+
+  body('coords2', 'coords2 is required').exists().notEmpty(),
+  body('coords2.latitude', 'coords2.latitude is required and must be a number')
+    .exists()
+    .isFloat(),
+  body(
+    'coords2.longitude',
+    'coords2.longitude is required and must be a number'
+  )
+    .exists()
+    .isFloat(),
   handleInputErrors,
 ];

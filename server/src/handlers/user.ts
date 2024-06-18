@@ -1,6 +1,8 @@
 import { Prisma } from '@prisma/client';
 import prisma from '../db';
 import { comparePasswords, createJWT, hashPassword } from '../modules/auth';
+import axios from 'axios';
+import { getDistance } from 'geolib';
 
 export const createNewUser = async (req, res) => {
   try {
@@ -9,13 +11,28 @@ export const createNewUser = async (req, res) => {
       where: { email: req.body.email },
     });
 
+    if (existingUser && existingUser.deleted) {
+      return res.status(400).json({
+        message:
+          'User account with this email existed but was deleted, please use a different email to create a new account',
+      });
+    }
+
     if (existingUser) {
-      return res
-        .status(400)
-        .json({ message: 'User with this email already exists' });
+      return res.status(400).json({
+        message:
+          'User with this email already exists, please use a different email to create a new account',
+      });
     }
 
     const hash = await hashPassword(req.body.password);
+
+    const { street, postalCode, city, country } = req.body.addresses[0];
+
+    const nominatimData = await axios.get(
+      `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=1&polygon_svg=1&q=${street} ${postalCode} ${city} ${country}`,
+      { headers: { 'Access-Control-Allow-Origin': '*' } }
+    );
 
     // Prepare the addresses for creation
     const addressData = req.body.addresses.map((address) => ({
@@ -26,6 +43,7 @@ export const createNewUser = async (req, res) => {
       postalCode: address.postalCode,
       country: address.country,
       primaryAddress: address.primaryAddress || false,
+      nominatim: nominatimData.data[0] || null,
     }));
 
     // Include address in the user creation process
@@ -54,7 +72,7 @@ export const createNewUser = async (req, res) => {
     return res.status(200).json({ ...userData, token: token });
   } catch (error) {
     console.error('Error creating user:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };
 
@@ -71,7 +89,7 @@ export const login = async (req, res) => {
       },
     });
 
-    if (!user) {
+    if (!user || user.deleted) {
       res.status(401);
       res.json({
         message: 'Invalid username or password',
@@ -97,8 +115,8 @@ export const login = async (req, res) => {
     const { password, ...userData } = user;
     return res.status(200).json({ ...userData, token: token });
   } catch (error) {
-    res.status(500);
-    res.json({ message: 'Internal server error' });
+    console.error('Error logging in:', error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };
 
@@ -107,7 +125,9 @@ export const getUserDetails = async (req, res) => {
     const user = await prisma.user.findUnique({
       where: { email: req.user.email },
       include: {
-        addresses: true,
+        addresses: {
+          where: { deleted: false },
+        },
         favoriteSozial: true,
         favoriteJugend: true,
         favoriteSchules: true,
@@ -115,7 +135,7 @@ export const getUserDetails = async (req, res) => {
       },
     });
 
-    if (!user) {
+    if (!user || user.deleted) {
       // Check if the user was not found and return a 404 status code
       return res.status(404).json({ message: 'User not found' });
     } else {
@@ -125,7 +145,7 @@ export const getUserDetails = async (req, res) => {
     }
   } catch (error) {
     console.error('Error retrieving user details:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };
 
@@ -135,7 +155,7 @@ export const deleteUser = async (req, res) => {
       where: { email: req.user.email },
     });
 
-    if (!user) {
+    if (!user || user.deleted) {
       return res.status(404).json({ message: 'User not found' });
     }
 
@@ -146,22 +166,26 @@ export const deleteUser = async (req, res) => {
     // Start a transaction to ensure both operations complete successfully
     const transaction = await prisma.$transaction([
       // Delete the address associated with the user first
-      prisma.address.deleteMany({
+      prisma.address.updateMany({
         where: { userId: req.user.id },
+        data: {
+          deleted: true,
+        },
       }),
       // Then delete the user
-      prisma.user.delete({
+      prisma.user.update({
         where: { email: req.user.email },
+        data: {
+          deleted: true,
+        },
       }),
     ]);
 
     console.log('Transaction result:', transaction);
-    res.json({ message: 'User and address deleted' });
+    return res.json({ message: 'User and address deleted' });
   } catch (error) {
     console.error('Error deleting user:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  } finally {
-    await prisma.$disconnect();
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };
 
@@ -179,13 +203,6 @@ export const updateUser = async (req, res) => {
         name: req.body.name,
         ...(hashedPassword && { password: hashedPassword }), // Conditionally include password if it's provided
       },
-      include: {
-        addresses: true,
-        favoriteSozial: true,
-        favoriteJugend: true,
-        favoriteSchules: true,
-        favoriteKinder: true,
-      }, // Include the address in the returned user data
     });
 
     const token = req.body.password ? createJWT(updatedUser) : null;
@@ -195,7 +212,7 @@ export const updateUser = async (req, res) => {
     return res.status(200).json({ ...userData, ...(token && { token }) });
   } catch (error) {
     console.error('Error updating user:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };
 
@@ -211,6 +228,30 @@ export const createAddress = async (req, res) => {
       primaryAddress,
     } = req.body;
 
+    // Check if the user already has a primary address
+    const user = await prisma.user.findUnique({
+      where: { id: parseInt(req.user.id) },
+      include: { addresses: true },
+    });
+
+    if (!user || user.deleted) {
+      return res.status(404).json({ message: 'Not found' });
+    }
+
+    const hasPrimaryAddress = user.addresses.some(
+      (address) => address.primaryAddress
+    );
+    if (primaryAddress && hasPrimaryAddress) {
+      return res
+        .status(400)
+        .json({ message: 'You already have a primary address' });
+    }
+
+    const nominatimData = await axios.get(
+      `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=1&polygon_svg=1&q=${street} ${postalCode} ${city} ${country}`,
+      { headers: { 'Access-Control-Allow-Origin': '*' } }
+    );
+
     const address = await prisma.address.create({
       data: {
         userId: parseInt(req.user.id),
@@ -221,6 +262,7 @@ export const createAddress = async (req, res) => {
         postalCode,
         country,
         primaryAddress: primaryAddress || false,
+        nominatim: nominatimData.data[0] || null,
       },
     });
 
@@ -247,11 +289,30 @@ export const updateAddress = async (req, res) => {
 
     const addressOwner = parseInt(req.user.id);
 
+    // Check if the user already has a primary address
+    const user = await prisma.user.findUnique({
+      where: { id: parseInt(req.user.id) },
+      include: { addresses: true },
+    });
+
+    if (!user || user.deleted) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const hasPrimaryAddress = user.addresses.some(
+      (address) => address.primaryAddress
+    );
+    if (primaryAddress && hasPrimaryAddress) {
+      return res
+        .status(400)
+        .json({ message: 'You already have a primary address' });
+    }
+
     const address = await prisma.address.findUnique({
       where: { id: parseInt(addressId) },
     });
 
-    if (!address) {
+    if (!address || address.deleted) {
       return res.status(404).json({ message: 'Address not found' });
     }
 
@@ -296,7 +357,7 @@ export const deleteAddress = async (req, res) => {
       include: { user: true },
     });
 
-    if (!address) {
+    if (!address || address.deleted) {
       return res.status(404).json({ message: 'Address not found' });
     }
 
@@ -309,13 +370,16 @@ export const deleteAddress = async (req, res) => {
       // Optionally, update another address to be the primary or inform the user
       return res.status(400).json({
         message:
-          'Cannot delete primary address. Update another address to primary first.',
+          'Cannot delete primary address. Update another address to primary address before deleting.',
       });
     }
 
     // Proceed with deletion
-    await prisma.address.delete({
+    await prisma.address.update({
       where: { id: addressId },
+      data: {
+        deleted: true,
+      },
     });
 
     return res.status(200).send({ message: 'Address deleted' });
@@ -336,7 +400,7 @@ export const getAddress = async (req, res) => {
     });
 
     // Check if the address was found
-    if (!address) {
+    if (!address || address.deleted) {
       return res.status(404).json({ message: 'Address not found' });
     }
 
@@ -641,5 +705,17 @@ export const toggleFavoriteSozial = async (req, res) => {
   } catch (error) {
     console.error('Error toggling Sozial favorite status:', error);
     return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+export const getCoordsDistance = async (req, res) => {
+  const { coords1, coords2 } = req.body;
+
+  try {
+    const calculatedDistance = getDistance(coords1, coords2) / 1000;
+    return res.status(200).json({ distance: calculatedDistance });
+  } catch (error) {
+    console.error('Error calculating distance:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };

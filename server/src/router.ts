@@ -7,6 +7,7 @@ import {
   deleteAddress,
   deleteUser,
   getAddress,
+  getCoordsDistance,
   getUserDetails,
   toggleFavoriteJugend,
   toggleFavoriteKinder,
@@ -18,7 +19,7 @@ import {
 import { getSchulsozialarbeit } from './handlers/schulsozialarbeit';
 import { getJugendberufshilfen } from './handlers/jugendberufshilfen';
 import { getKindertageseinrichtungen } from './handlers/kindertageseinrichtungen';
-import { updateUserValidator } from './modules/validator';
+import { getDistanceValidator, updateUserValidator } from './modules/validator';
 
 const router = Router();
 
@@ -50,6 +51,8 @@ router.post(
 router.post('/user/toggle-favorite-schule/:schule_id', toggleFavoriteSchule);
 router.post('/user/toggle-favorite-kinder/:kinder_id', toggleFavoriteKinder);
 router.post('/user/toggle-favorite-sozial/:sozial_id', toggleFavoriteSozial);
+
+router.post('/user/get-distance', getDistanceValidator, getCoordsDistance);
 
 /**
  * Schule

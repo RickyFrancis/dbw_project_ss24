@@ -26,6 +26,7 @@ model User {
   email           String                   @unique
   name            String
   password        String
+  deleted         Boolean                  @default(false)
   createdAt       DateTime                 @default(now())
   updatedAt       DateTime                 @updatedAt
   addresses       Address[]
@@ -43,6 +44,8 @@ model Address {
   state          String?  @db.VarChar(100)
   postalCode     String   @db.VarChar(50)
   country        String   @db.VarChar(100)
+  deleted        Boolean  @default(false)
+  nominatim      Json? // Nominatim data
   userId         Int
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   primaryAddress Boolean  @default(false)

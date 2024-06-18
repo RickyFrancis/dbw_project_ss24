@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Snackbar, Alert, IconButton } from '@mui/material';
+import { Snackbar, Alert, IconButton, List, ListItem } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 interface ErrorComponentProps {
-  error: any; // You can specify more specific type based on error structure
+  error: any; // Adjust according to the actual error format you expect
 }
 
 const ErrorComponent: React.FC<ErrorComponentProps> = ({ error }) => {
@@ -15,49 +15,55 @@ const ErrorComponent: React.FC<ErrorComponentProps> = ({ error }) => {
     }
   }, [error]);
 
-  // Corrected handleClose function
   const handleClose = (
-    event: React.SyntheticEvent<any, Event> | Event, // Updated this line to handle both SyntheticEvent and Event
+    event?: React.SyntheticEvent | Event,
     reason?: string
   ) => {
     if (reason === 'clickaway') {
-      return; // Do not close if the click is away from the Snackbar
+      return;
     }
     setOpen(false);
   };
 
-  let message = 'An unexpected error occurred';
-  if (error?.data?.message) {
-    message = error.data.message;
-  } else if (typeof error === 'string') {
-    message = error;
-  } else if (error?.message) {
-    message = error.message;
-  }
+  const renderErrorMessages = () => {
+    if (error?.data?.message) return error.data.message;
+    // Check if the errors array is available and has entries
+    if (error?.data?.errors && error.data.errors.length) {
+      return (
+        <List>
+          {error.data.errors.map((err: any, index: number) => (
+            <ListItem key={index}>{err.msg}</ListItem>
+          ))}
+        </List>
+      );
+    }
+    // Fallback message if there is no specific errors array or it's empty
+    return 'An unexpected error occurred';
+  };
 
   return (
     <Snackbar
       open={open}
-      autoHideDuration={5000}
+      autoHideDuration={6000}
       onClose={handleClose}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
     >
       <Alert
         severity="error"
         sx={{ width: '100%' }}
-        onClose={() => setOpen(false)} // Simpler onClose handler for the Alert
+        onClose={handleClose}
         action={
           <IconButton
             size="small"
             aria-label="close"
             color="inherit"
-            onClick={() => setOpen(false)} // Simpler close function directly setting state
+            onClick={handleClose}
           >
             <CloseIcon fontSize="small" />
           </IconButton>
         }
       >
-        {message}
+        {renderErrorMessages()}
       </Alert>
     </Snackbar>
   );

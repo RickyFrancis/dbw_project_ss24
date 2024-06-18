@@ -1,14 +1,14 @@
-// src/features/schule/schuleApi.ts
+// src/features/jugendberufshilfe/jugendberufshilfeApi.ts
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../../app/store';
 import { logout } from '../auth/authSlice';
-import { SchuleApiResponse } from '../../types';
-import { setSchule } from './schuleSlice';
+import { JugendberufshilfeApiResponse } from '../../types';
+import { setJugendberufshilfe } from './jugendberufshilfeSlice';
 import { BASE_API_URI } from '../../constants/appConstants';
 
-export const schuleApi = createApi({
-  reducerPath: 'schuleApi',
+export const jugendberufshilfeApi = createApi({
+  reducerPath: 'jugendberufshilfeApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_API_URI,
     prepareHeaders: (headers, { getState }) => {
@@ -20,14 +20,14 @@ export const schuleApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getSchule: builder.query<SchuleApiResponse, void>({
+    getJugendberufshilfe: builder.query<JugendberufshilfeApiResponse, void>({
       query: () => ({
-        url: 'api/schule',
+        url: 'api/jugendberufshilfe',
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setSchule(data.data)); // Assuming `data` is the correct shape
+          dispatch(setJugendberufshilfe(data.data)); // Assuming `data` is the correct shape
         } catch (err: unknown) {
           const error = err as {
             error: { status: number; data: { message: string } };
@@ -52,4 +52,5 @@ export const schuleApi = createApi({
   }),
 });
 
-export const { useGetSchuleQuery, useGetReverseGeocodeQuery } = schuleApi;
+export const { useGetJugendberufshilfeQuery, useGetReverseGeocodeQuery } =
+  jugendberufshilfeApi;

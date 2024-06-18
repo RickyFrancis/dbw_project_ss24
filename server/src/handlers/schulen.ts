@@ -1,3 +1,4 @@
+import { userInfo } from 'os';
 import prisma from '../db';
 
 // export const getOneSchule = async (req, res) => {

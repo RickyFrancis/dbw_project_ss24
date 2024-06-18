@@ -12,6 +12,7 @@ import {
   Container,
   Card,
   CardContent,
+  Divider,
 } from '@mui/material';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -67,27 +68,55 @@ const LoginPage = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                marginBottom: '10px',
               }}
             >
-              <img
-                src={Logo}
-                alt=""
-                style={{
-                  marginLeft: '30px',
+              <Card
+                variant="outlined"
+                sx={{
+                  marginTop: '10px',
+                  marginBottom: '10px',
                 }}
-              />
-              <Typography
-                component="h1"
-                variant="h5"
-                textAlign={'center'}
-                gutterBottom
               >
-                {APP_NAME}
-              </Typography>
-              <Typography component="h1" variant="h3" textAlign={'center'}>
-                LOGIN
-              </Typography>
+                <CardContent>
+                  <img
+                    src={Logo}
+                    alt=""
+                    style={{
+                      marginLeft: '50px',
+                    }}
+                  />
+                  <Typography
+                    component="h1"
+                    variant="h5"
+                    textAlign={'center'}
+                    gutterBottom
+                  >
+                    {APP_NAME}
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    textAlign={'center'}
+                    gutterBottom
+                    display={'block'}
+                  >
+                    Find the institution that best suits your needs
+                  </Typography>
+                </CardContent>
+              </Card>
             </Box>
+
+            <Typography
+              component="h1"
+              variant="h3"
+              textAlign={'center'}
+              color={'text.secondary'}
+              gutterBottom
+            >
+              LOGIN
+            </Typography>
+
+            <Divider component="div" />
 
             <Box
               component="form"
@@ -141,6 +170,16 @@ const LoginPage = () => {
                 {isLoading ? <CircularProgress size={24} /> : 'Sign In'}
               </Button>
             </Box>
+            <Typography textAlign={'center'}>
+              Don't have an account?{' '}
+              <Button
+                color="primary"
+                onClick={() => navigate('/register')}
+                sx={{ textTransform: 'none' }}
+              >
+                Register
+              </Button>
+            </Typography>
           </CardContent>
         </Card>
       </Box>

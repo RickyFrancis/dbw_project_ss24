@@ -6,9 +6,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FaxIcon from '@mui/icons-material/Fax';
 import PhoneIcon from '@mui/icons-material/LocalPhone';
 import NearMeIcon from '@mui/icons-material/NearMe';
+import InfoIcon from '@mui/icons-material/Info';
 import MarkunreadMailboxIcon from '@mui/icons-material/MarkunreadMailbox';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
-import InfoIcon from '@mui/icons-material/Info';
 import {
   Avatar,
   Button,
@@ -31,41 +31,41 @@ import IconButton from '@mui/material/IconButton';
 import { useEffect, useState } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import {
-  SCHULSOZIALARBEIT_API_EXCLUDES,
-  SCHULSOZIALARBEIT_EXCLUDES,
+  JUGENDBERUFSHILFE_API_EXCLUDES,
+  JUGENDBERUFSHILFE_EXCLUDES,
 } from '../constants/appConstants';
-import { useGetReverseGeocodeQuery } from '../features/schulsozialarbeit/schulsozialarbeitApi';
+import { useGetReverseGeocodeQuery } from '../features/jugendberufshilfe/jugendberufshilfeApi';
 import {
   useGetDistanceMutation,
   useGetUserQuery,
-  useToggleFavoriteSchulsozialarbeitMutation,
+  useToggleFavoriteJugendMutation,
+  useToggleFavoriteKinderMutation,
 } from '../features/user/userApi';
-import { Address, GenericObject, Schulsozialarbeit } from '../types';
+import { Address, GenericObject, Jugendberufshilfe } from '../types';
 import extractCoordinates from '../utils/extractCoordinates';
 import flattenObject from '../utils/flattenObject';
 import getIcon from '../utils/getIcon';
 
-interface SchulsozialarbeitMarkerProps {
-  schulsozialarbeit: Schulsozialarbeit;
+interface JugendberufshilfeMarkerProps {
+  jugendberufshilfe: Jugendberufshilfe;
   setPolygonCoordinates: any;
   userLocation: [number, number];
   setZoom: any;
   setUserLocation: any;
 }
 
-const SchulsozialarbeitMapMarker = ({
-  schulsozialarbeit,
+const JugendberufshilfeMapMarker = ({
+  jugendberufshilfe,
   setPolygonCoordinates,
   userLocation,
   setZoom,
   setUserLocation,
-}: SchulsozialarbeitMarkerProps) => {
-  const [fetchOnDemand, setFetchOnDemand] = useState(false); // State to control fetching
+}: JugendberufshilfeMarkerProps) => {
   const { data, error: userDataError, refetch } = useGetUserQuery();
 
-  const isFavorite = data?.favoriteSozial.some(
-    (favoriteSchulsozialarbeit: Schulsozialarbeit) =>
-      favoriteSchulsozialarbeit.id === schulsozialarbeit.id
+  const isFavorite = data?.favoriteJugend.some(
+    (favoriteJugendberufshilfe: Jugendberufshilfe) =>
+      favoriteJugendberufshilfe.id === jugendberufshilfe.id
   );
 
   // Find the primaryAddress
@@ -74,13 +74,15 @@ const SchulsozialarbeitMapMarker = ({
   );
 
   const [
-    toggleFavoriteSchulsozialarbeit,
-    { error: removeFavoriteSchulsozialarbeitError },
-  ] = useToggleFavoriteSchulsozialarbeitMutation();
+    toggleFavoriteJugend,
+    { error: removeFavoriteJugendberufshilfeError },
+  ] = useToggleFavoriteJugendMutation();
+
+  const [fetchOnDemand, setFetchOnDemand] = useState(false); // State to control fetching
 
   // Use the query with controlled skipping based on state
   const { data: reverseGeocodeData, isLoading } = useGetReverseGeocodeQuery(
-    { lat: schulsozialarbeit.y, lon: schulsozialarbeit.x },
+    { lat: jugendberufshilfe.y, lon: jugendberufshilfe.x },
     { skip: !fetchOnDemand } // Dynamically skip based on state
   );
 
@@ -105,8 +107,8 @@ const SchulsozialarbeitMapMarker = ({
             : userLocation[1],
         },
         coords2: {
-          latitude: schulsozialarbeit.y,
-          longitude: schulsozialarbeit.x,
+          latitude: jugendberufshilfe.y,
+          longitude: jugendberufshilfe.x,
         },
       });
     } catch (error) {
@@ -121,9 +123,9 @@ const SchulsozialarbeitMapMarker = ({
     handleFetchReverseGeocode();
   };
 
-  const handleToggleFavoriteSchulsozialarbeit = async (id: number) => {
+  const handleToggleFavoriteJugend = async (id: number) => {
     try {
-      await toggleFavoriteSchulsozialarbeit({ id });
+      await toggleFavoriteJugend({ id });
       refetch();
     } catch (error) {
       console.error('Toggle favorite failed:', error);
@@ -133,7 +135,7 @@ const SchulsozialarbeitMapMarker = ({
   const handleFetchReverseGeocode = () => {
     setFetchOnDemand(true); // Trigger the query by updating state
     setZoom(17);
-    setUserLocation([schulsozialarbeit.y, schulsozialarbeit.x]);
+    setUserLocation([jugendberufshilfe.y, jugendberufshilfe.x]);
   };
 
   useEffect(() => {
@@ -145,18 +147,18 @@ const SchulsozialarbeitMapMarker = ({
 
   return (
     <Marker
-      position={[schulsozialarbeit.y, schulsozialarbeit.x]}
+      position={[jugendberufshilfe.y, jugendberufshilfe.x]}
       icon={
         isFavorite
-          ? getIcon('schulsozialarbeit_2_64_heart', [40, 40])
-          : getIcon('schulsozialarbeit_2_64', [30, 30])
+          ? getIcon('jugendberufshilfe_2_64_heart', [40, 40])
+          : getIcon('jugendberufshilfe_2_64', [30, 30])
       }
     >
       <Popup>
         <Card elevation={0} sx={{ minWidth: '100%' }}>
           <CardHeader
-            title={schulsozialarbeit.TRAEGER}
-            subheader={schulsozialarbeit.LEISTUNGEN}
+            title={jugendberufshilfe.TRAEGER}
+            subheader={jugendberufshilfe.LEISTUNGEN}
             sx={{
               p: 0,
             }}
@@ -174,7 +176,7 @@ const SchulsozialarbeitMapMarker = ({
                     flexWrap: 'wrap',
                   }}
                 >
-                  {schulsozialarbeit.BEZEICHNUNG && (
+                  {jugendberufshilfe.BEZEICHNUNG && (
                     <ListItem sx={{ padding: 0 }}>
                       <ListItemAvatar sx={{ marginRight: '-1rem' }}>
                         <Avatar sx={{ width: 30, height: 30 }}>
@@ -183,7 +185,7 @@ const SchulsozialarbeitMapMarker = ({
                       </ListItemAvatar>
                       <ListItemText
                         primary="BEZEICHNUNG"
-                        secondary={schulsozialarbeit.BEZEICHNUNG}
+                        secondary={jugendberufshilfe.BEZEICHNUNG}
                         primaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
                         secondaryTypographyProps={{
                           sx: { fontSize: '0.8rem' },
@@ -200,7 +202,7 @@ const SchulsozialarbeitMapMarker = ({
                     </ListItemAvatar>
                     <ListItemText
                       primary="STRASSE"
-                      secondary={schulsozialarbeit.STRASSE}
+                      secondary={jugendberufshilfe.STRASSE}
                       primaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
                       secondaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
                     />
@@ -213,7 +215,7 @@ const SchulsozialarbeitMapMarker = ({
                     </ListItemAvatar>
                     <ListItemText
                       primary="PLZ"
-                      secondary={schulsozialarbeit.PLZ}
+                      secondary={jugendberufshilfe.PLZ}
                       primaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
                       secondaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
                     />
@@ -226,13 +228,13 @@ const SchulsozialarbeitMapMarker = ({
                     </ListItemAvatar>
                     <ListItemText
                       primary="ORT"
-                      secondary={schulsozialarbeit.ORT}
+                      secondary={jugendberufshilfe.ORT}
                       primaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
                       secondaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
                     />
                   </ListItem>
 
-                  {schulsozialarbeit.TELEFON && (
+                  {jugendberufshilfe.TELEFON && (
                     <ListItem sx={{ padding: 0 }}>
                       <ListItemAvatar sx={{ marginRight: '-1rem' }}>
                         <Avatar sx={{ width: 30, height: 30 }}>
@@ -242,8 +244,8 @@ const SchulsozialarbeitMapMarker = ({
                       <ListItemText
                         primary="Phone"
                         secondary={
-                          <a href={`tel:${schulsozialarbeit.TELEFON}`}>
-                            {schulsozialarbeit.TELEFON}
+                          <a href={`tel:${jugendberufshilfe.TELEFON}`}>
+                            {jugendberufshilfe.TELEFON}
                           </a>
                         }
                         primaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
@@ -254,7 +256,7 @@ const SchulsozialarbeitMapMarker = ({
                     </ListItem>
                   )}
 
-                  {schulsozialarbeit.FAX && (
+                  {jugendberufshilfe.FAX && (
                     <ListItem sx={{ padding: 0 }}>
                       <ListItemAvatar sx={{ marginRight: '-1rem' }}>
                         <Avatar sx={{ width: 30, height: 30 }}>
@@ -263,7 +265,7 @@ const SchulsozialarbeitMapMarker = ({
                       </ListItemAvatar>
                       <ListItemText
                         primary="FAX"
-                        secondary={schulsozialarbeit.FAX}
+                        secondary={jugendberufshilfe.FAX}
                         primaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
                         secondaryTypographyProps={{
                           sx: { fontSize: '0.8rem' },
@@ -272,7 +274,7 @@ const SchulsozialarbeitMapMarker = ({
                     </ListItem>
                   )}
 
-                  {schulsozialarbeit.EMAIL && (
+                  {jugendberufshilfe.EMAIL && (
                     <ListItem sx={{ padding: 0 }}>
                       <ListItemAvatar sx={{ marginRight: '-1rem' }}>
                         <Avatar sx={{ width: 30, height: 30 }}>
@@ -282,8 +284,8 @@ const SchulsozialarbeitMapMarker = ({
                       <ListItemText
                         primary="Email"
                         secondary={
-                          <a href={`mailto:${schulsozialarbeit.EMAIL}`}>
-                            {schulsozialarbeit.EMAIL}
+                          <a href={`mailto:${jugendberufshilfe.EMAIL}`}>
+                            {jugendberufshilfe.EMAIL}
                           </a>
                         }
                         primaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
@@ -293,7 +295,6 @@ const SchulsozialarbeitMapMarker = ({
                       />
                     </ListItem>
                   )}
-
                   {!isDistanceLoading && !isDistanceError && distanceData && (
                     <ListItem sx={{ padding: 0 }}>
                       <ListItemAvatar sx={{ marginRight: '-1rem' }}>
@@ -330,9 +331,7 @@ const SchulsozialarbeitMapMarker = ({
             >
               <IconButton
                 aria-label="add to favorites"
-                onClick={() =>
-                  handleToggleFavoriteSchulsozialarbeit(schulsozialarbeit.id)
-                }
+                onClick={() => handleToggleFavoriteJugend(jugendberufshilfe.id)}
               >
                 <FavoriteIcon color={isFavorite ? 'error' : 'inherit'} />
               </IconButton>
@@ -346,6 +345,7 @@ const SchulsozialarbeitMapMarker = ({
                 <NearMeIcon color={distanceData ? 'primary' : 'inherit'} />
               </IconButton>
             </Tooltip>
+
             <Button
               onClick={handleExpandClick}
               size="small"
@@ -365,8 +365,8 @@ const SchulsozialarbeitMapMarker = ({
                 spacing={0}
               >
                 {flattenObject(
-                  schulsozialarbeit,
-                  SCHULSOZIALARBEIT_EXCLUDES
+                  jugendberufshilfe,
+                  JUGENDBERUFSHILFE_EXCLUDES
                 ).map((property) => (
                   <div key={property.name}>
                     <Typography variant="overline" color="text.secondary">
@@ -391,7 +391,7 @@ const SchulsozialarbeitMapMarker = ({
                 {reverseGeocodeData
                   ? flattenObject(
                       reverseGeocodeData,
-                      SCHULSOZIALARBEIT_API_EXCLUDES
+                      JUGENDBERUFSHILFE_API_EXCLUDES
                     ).map((property: GenericObject) => (
                       <div key={property.name}>
                         <Typography variant="overline" color="text.secondary">
@@ -413,4 +413,4 @@ const SchulsozialarbeitMapMarker = ({
   );
 };
 
-export default SchulsozialarbeitMapMarker;
+export default JugendberufshilfeMapMarker;

@@ -41,7 +41,19 @@ export const schulsozialarbeitApi = createApi({
         }
       },
     }),
+    getReverseGeocode: builder.query<any, { lat: number; lon: number }>({
+      query: ({ lat, lon }) => ({
+        url: `https://nominatim.openstreetmap.org/reverse`,
+        params: {
+          lat,
+          lon,
+          format: 'json',
+          polygon_svg: 1,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetSchulsozialarbeitQuery } = schulsozialarbeitApi;
+export const { useGetSchulsozialarbeitQuery, useGetReverseGeocodeQuery } =
+  schulsozialarbeitApi;

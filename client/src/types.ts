@@ -115,3 +115,54 @@ export interface Jugendberufshilfe {
 export interface JugendberufshilfeApiResponse {
   data: Jugendberufshilfe[];
 }
+
+export interface RegistrationRequest {
+  name: string;
+  email: string;
+  password: string;
+  addresses: Address[];
+}
+
+export interface Address {
+  id?: number;
+  street: string;
+  street2?: string;
+  city: string;
+  state?: string;
+  postalCode: string;
+  country: string;
+  userId?: number;
+  primaryAddress?: boolean;
+  nominatim?: any;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface ProfileUpdate {
+  name?: string;
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+}
+
+export interface RegistrationResponse {
+  id: number;
+  email: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  addresses: Address[];
+  token: string;
+}
+
+export interface Coordinates {
+  latitude: number;
+  longitude: number;
+}
+
+export interface DistanceCalculationData {
+  coords1: Coordinates;
+  coords2: Coordinates;
+}
+
+export type GenericObject = { [key: string]: any };

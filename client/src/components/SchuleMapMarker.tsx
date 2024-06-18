@@ -1,13 +1,18 @@
 import AddRoadIcon from '@mui/icons-material/AddRoad';
 import EmailIcon from '@mui/icons-material/Email';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FaxIcon from '@mui/icons-material/Fax';
-import PhoneIcon from '@mui/icons-material/LocalPhone';
-import PostalCodeIcon from '@mui/icons-material/MarkunreadMailbox';
 import WWWIcon from '@mui/icons-material/Language';
+import PhoneIcon from '@mui/icons-material/LocalPhone';
+import NearMeIcon from '@mui/icons-material/NearMe';
+import InfoIcon from '@mui/icons-material/Info';
+import MarkunreadMailboxIcon from '@mui/icons-material/MarkunreadMailbox';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
 import {
   Avatar,
+  Button,
   Card,
   CardActions,
   CardContent,
@@ -19,111 +24,131 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Paper,
   Stack,
+  Tooltip,
   Typography,
 } from '@mui/material';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
 import { useEffect, useState } from 'react';
 import { Marker, Popup } from 'react-leaflet';
-import { Schule } from '../types';
+import {
+  SCHULE_API_EXCLUDES,
+  SCHULE_EXCLUDES,
+} from '../constants/appConstants';
+import { useGetReverseGeocodeQuery } from '../features/schule/schuleApi';
+import {
+  useGetDistanceMutation,
+  useGetUserQuery,
+  useToggleFavoriteSchuleMutation,
+} from '../features/user/userApi';
+import { Address, GenericObject, Schule } from '../types';
+import extractCoordinates from '../utils/extractCoordinates';
+import flattenObject from '../utils/flattenObject';
 import getIcon from '../utils/getIcon';
-import linkifyStr from 'linkify-string';
 
 interface SchuleMarkerProps {
   schule: Schule;
+  setPolygonCoordinates: any;
+  userLocation: [number, number];
+  setZoom: any;
+  setUserLocation: any;
 }
 
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
+const SchuleMapMarker = ({
+  schule,
+  setPolygonCoordinates,
+  userLocation,
+  setZoom,
+  setUserLocation,
+}: SchuleMarkerProps) => {
+  const [fetchOnDemand, setFetchOnDemand] = useState(false); // State to control fetching
+  const { data, error: userDataError, refetch } = useGetUserQuery();
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
+  const isFavorite = data?.favoriteSchules.some(
+    (favoriteSchule: Schule) => favoriteSchule.id === schule.id
+  );
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+  // Find the primaryAddress
+  const primaryAddress = data?.addresses.find(
+    (address: Address) => address.primaryAddress === true
+  );
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+  const [toggleFavoriteSchule, { error: removeFavoriteSchuleError }] =
+    useToggleFavoriteSchuleMutation();
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+  // Use the query with controlled skipping based on state
+  const { data: reverseGeocodeData, isLoading } = useGetReverseGeocodeQuery(
+    { lat: schule.y, lon: schule.x },
+    { skip: !fetchOnDemand } // Dynamically skip based on state
+  );
 
-const SchuleMapMarker = ({ schule }: SchuleMarkerProps) => {
-  const excludeProperties = [
-    'id',
-    'API_ID',
-    'API_OBJECTID',
-    'BEZEICHNUNG',
-    'STRASSE',
-    'PLZ',
-    'ORT',
-    'TELEFON',
-    'FAX',
-    'EMAIL',
-    'WWW',
-    'KURZBEZEICHNUNG',
-    'ART',
-  ];
-  const schuleProperties = Object.entries(schule)
-    .filter(
-      ([key, value]) => value !== null && !excludeProperties.includes(key)
-    )
-    .map(([key, value]) => ({
-      name: key,
-      value: value,
-    }));
+  const [
+    getDistance,
+    {
+      data: distanceData,
+      isLoading: isDistanceLoading,
+      isError: isDistanceError,
+    },
+  ] = useGetDistanceMutation();
+
+  const handleGetDistance = async () => {
+    try {
+      await getDistance({
+        coords1: {
+          latitude: primaryAddress?.nominatim?.lat
+            ? primaryAddress.nominatim.lat
+            : userLocation[0],
+          longitude: primaryAddress?.nominatim?.lon
+            ? primaryAddress.nominatim.lon
+            : userLocation[1],
+        },
+        coords2: {
+          latitude: schule.y,
+          longitude: schule.x,
+        },
+      });
+    } catch (error) {
+      console.error('Failed to get distance:', error);
+    }
+  };
 
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+    handleFetchReverseGeocode();
   };
 
-  // const getNominatimData = async () => {
-  //   const response = await fetch(
-  //     `https://nominatim.openstreetmap.org/search?street=${schule.STRASSE}&format=json&addressdetails=1&limit=1&polygon_svg=1&postalcode=${schule.PLZ}&city=${schule.ORT}`,
-  //     { mode: 'no-cors' }
-  //   );
-  //   const data = await response.json();
-  //   return data;
-  // };
+  const handleToggleFavoriteSchule = async (id: number) => {
+    try {
+      await toggleFavoriteSchule({ id });
+      refetch();
+    } catch (error) {
+      console.error('Delete address failed:', error);
+    }
+  };
 
-  // useEffect(() => {
-  //   getNominatimData();
-  // }, []);
+  const handleFetchReverseGeocode = () => {
+    setFetchOnDemand(true); // Trigger the query by updating state
+    setZoom(17);
+    setUserLocation([schule.y, schule.x]);
+  };
+
+  useEffect(() => {
+    // Check if reverse geocode data is available and update parent's state
+    if (reverseGeocodeData) {
+      setPolygonCoordinates(extractCoordinates(reverseGeocodeData.svg));
+    }
+  }, [reverseGeocodeData, setPolygonCoordinates]);
 
   return (
     <Marker
       position={[schule.y, schule.x]}
-      icon={getIcon('schule_2_64', [30, 30])}
+      icon={
+        isFavorite
+          ? getIcon('schule_2_64_heart', [40, 40])
+          : getIcon('schule_2_64', [30, 30])
+      }
     >
       <Popup>
         <Card elevation={0} sx={{ minWidth: '100%' }}>
@@ -150,7 +175,7 @@ const SchuleMapMarker = ({ schule }: SchuleMarkerProps) => {
                   <ListItem sx={{ padding: 0 }}>
                     <ListItemAvatar sx={{ marginRight: '-1rem' }}>
                       <Avatar sx={{ width: 30, height: 30 }}>
-                        <AddRoadIcon fontSize="small" />
+                        <InfoIcon fontSize="small" />
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
@@ -176,7 +201,7 @@ const SchuleMapMarker = ({ schule }: SchuleMarkerProps) => {
                   <ListItem sx={{ padding: 0 }}>
                     <ListItemAvatar sx={{ marginRight: '-1rem' }}>
                       <Avatar sx={{ width: 30, height: 30 }}>
-                        <AddRoadIcon fontSize="small" />
+                        <MarkunreadMailboxIcon fontSize="small" />
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
@@ -189,7 +214,7 @@ const SchuleMapMarker = ({ schule }: SchuleMarkerProps) => {
                   <ListItem sx={{ padding: 0 }}>
                     <ListItemAvatar sx={{ marginRight: '-1rem' }}>
                       <Avatar sx={{ width: 30, height: 30 }}>
-                        <AddRoadIcon fontSize="small" />
+                        <LocationCityIcon fontSize="small" />
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
@@ -266,6 +291,27 @@ const SchuleMapMarker = ({ schule }: SchuleMarkerProps) => {
                       }}
                     />
                   </ListItem>
+                  {!isDistanceLoading && !isDistanceError && distanceData && (
+                    <ListItem sx={{ padding: 0 }}>
+                      <ListItemAvatar sx={{ marginRight: '-1rem' }}>
+                        <Avatar sx={{ width: 30, height: 30 }}>
+                          <NearMeIcon fontSize="small" />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={`Distance from ${
+                          primaryAddress?.street
+                            ? primaryAddress.street
+                            : 'Primary Address'
+                        }`}
+                        secondary={`${distanceData.distance} km`}
+                        primaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
+                        secondaryTypographyProps={{
+                          sx: { fontSize: '0.8rem' },
+                        }}
+                      />
+                    </ListItem>
+                  )}
                 </List>
               </Grid>
             </Grid>
@@ -276,20 +322,36 @@ const SchuleMapMarker = ({ schule }: SchuleMarkerProps) => {
               p: 0,
             }}
           >
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            {/* <IconButton aria-label="share">
-              <ShareIcon />
-            </IconButton> */}
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
+            <Tooltip
+              title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
             >
-              <ExpandMoreIcon />
-            </ExpandMore>
+              <IconButton
+                aria-label="add to favorites"
+                onClick={() => handleToggleFavoriteSchule(schule.id)}
+              >
+                <FavoriteIcon color={isFavorite ? 'error' : 'inherit'} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Distance from Primary Address">
+              <IconButton
+                aria-label="distance"
+                onClick={handleGetDistance}
+                disabled={isLoading}
+              >
+                <NearMeIcon color={distanceData ? 'primary' : 'inherit'} />
+              </IconButton>
+            </Tooltip>
+
+            <Button
+              onClick={handleExpandClick}
+              size="small"
+              sx={{
+                marginLeft: 'auto',
+              }}
+            >
+              Show More
+              {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+            </Button>
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent className="more-info-card">
@@ -298,15 +360,42 @@ const SchuleMapMarker = ({ schule }: SchuleMarkerProps) => {
                 divider={<Divider orientation="horizontal" flexItem />}
                 spacing={0}
               >
-                {schuleProperties.map((property) => (
-                  <div>
+                {flattenObject(schule, SCHULE_EXCLUDES).map((property) => (
+                  <div key={property.name}>
                     <Typography variant="overline" color="text.secondary">
                       {property.name}
-                    </Typography>{' '}
+                    </Typography>
                     &nbsp;
                     <Typography variant="caption">{property.value}</Typography>
                   </div>
                 ))}
+                <Divider />
+                {reverseGeocodeData ? (
+                  <Typography
+                    variant="overline"
+                    color="text.secondary"
+                    mt={1}
+                    gutterBottom
+                  >
+                    More info from Nominatim
+                  </Typography>
+                ) : null}
+                <Divider />
+                {reverseGeocodeData
+                  ? flattenObject(reverseGeocodeData, SCHULE_API_EXCLUDES).map(
+                      (property: GenericObject) => (
+                        <div key={property.name}>
+                          <Typography variant="overline" color="text.secondary">
+                            {property.name}
+                          </Typography>
+                          &nbsp;
+                          <Typography variant="caption">
+                            {property.value}
+                          </Typography>
+                        </div>
+                      )
+                    )
+                  : null}
               </Stack>
             </CardContent>
           </Collapse>
