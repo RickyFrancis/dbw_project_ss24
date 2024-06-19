@@ -7,6 +7,8 @@ import FaxIcon from '@mui/icons-material/Fax';
 import PhoneIcon from '@mui/icons-material/LocalPhone';
 import NearMeIcon from '@mui/icons-material/NearMe';
 import InfoIcon from '@mui/icons-material/Info';
+import WWWIcon from '@mui/icons-material/Language';
+
 import MarkunreadMailboxIcon from '@mui/icons-material/MarkunreadMailbox';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import {
@@ -284,6 +286,31 @@ const KindertageseinrichtungMapMarker = ({
                         primaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
                         secondaryTypographyProps={{
                           sx: { fontSize: '0.8rem' },
+                        }}
+                      />
+                    </ListItem>
+                  )}
+                  {kindertageseinrichtung.URL && (
+                    <ListItem sx={{ padding: 0 }}>
+                      <ListItemAvatar sx={{ marginRight: '-1rem' }}>
+                        <Avatar sx={{ width: 30, height: 30 }}>
+                          <WWWIcon fontSize="small" />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="Website"
+                        secondary={
+                          <a
+                            href={`http://${kindertageseinrichtung.URL}`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {kindertageseinrichtung.URL}
+                          </a>
+                        }
+                        primaryTypographyProps={{ sx: { fontSize: '0.8rem' } }}
+                        secondaryTypographyProps={{
+                          sx: { fontSize: '0.8rem', textWrap: 'wrap' },
                         }}
                       />
                     </ListItem>

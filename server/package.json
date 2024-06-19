@@ -2,7 +2,7 @@
   "name": "dbw_project_server_756378",
   "version": "1.0.0",
   "description": "Server of the Database and Web Techniques Project, Summer Semester 2024, Matriculation Number 756378",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.ts",

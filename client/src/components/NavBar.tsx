@@ -43,10 +43,11 @@ function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector(selectUser);
-  // const userStatus = useSelector(selectUserStatus);
+  // the current path
+  const currentPath = window.location.pathname;
+  console.log(currentPath);
 
-  // console.log(userStatus);
+  const user = useSelector(selectUser);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -149,6 +150,10 @@ function NavBar() {
                     handleCloseNavMenu();
                     navigate(page.path);
                   }}
+                  sx={{
+                    backgroundColor:
+                      currentPath === page.path ? 'rgba(0, 0, 0, 0.1)' : 'none',
+                  }}
                 >
                   <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
@@ -185,7 +190,13 @@ function NavBar() {
                   handleCloseNavMenu();
                   navigate(page.path);
                 }}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{
+                  my: 2,
+                  color: 'white',
+                  display: 'block',
+                  border:
+                    currentPath === page.path ? '1px solid white' : 'none',
+                }}
               >
                 {page.name}
               </Button>
@@ -220,6 +231,12 @@ function NavBar() {
                   onClick={(e) => {
                     handleCloseUserMenu();
                     navigate(setting.path);
+                  }}
+                  sx={{
+                    backgroundColor:
+                      currentPath === setting.path
+                        ? 'rgba(0, 0, 0, 0.1)'
+                        : 'none',
                   }}
                 >
                   <Typography textAlign="center">{setting.name}</Typography>

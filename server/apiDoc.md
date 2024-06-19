@@ -60,6 +60,7 @@
 #### 2. Login Endpoint
 
 **Endpoint:** `/login`  
+**Description:** Login to an existing user account  
 **Method:** POST  
 **Authorization:** None  
 **Request Body:**
@@ -88,6 +89,7 @@
 #### 3. Get User Details
 
 **Endpoint:** `/api/user`  
+**Description:** Get the details of the logged in user  
 **Method:** GET  
 **Authorization:** Bearer Token  
 **Response (200 OK):**
@@ -107,6 +109,7 @@
 #### 4. Update User Details
 
 **Endpoint:** `/api/user`  
+**Description:** Update the details of the logged in user  
 **Method:** PUT  
 **Authorization:** Bearer Token  
 **Request Body:**
@@ -136,6 +139,7 @@
 #### 5. Get User Address Details
 
 **Endpoint:** `/api/user/address/{addressId}`  
+**Description:** Get the details of a specific address  
 **Method:** GET  
 **Authorization:** Bearer Token  
 **Response (200 OK):**
@@ -160,7 +164,8 @@
 
 #### 6. Update Address
 
-**Endpoint:** `/api/user/address/{addressId}`  
+**Endpoint:** `/api/user/address/{addressId}`
+**Description:** Update the details of a specific address  
 **Method:** PUT  
 **Authorization:** Bearer Token  
 **Request Body:**
@@ -203,6 +208,7 @@
 #### 7. Delete User Address
 
 **Endpoint:** `/api/user/address/{addressId}`  
+**Description:** Delete a specific address if it is not the primary address  
 **Method:** DELETE  
 **Authorization:** Bearer Token  
 **Response (200 OK):**
@@ -216,6 +222,7 @@
 #### 8. Add New User Address
 
 **Endpoint:** `/api/user/address`  
+**Description:** Create a new address for the user  
 **Method:** POST  
 **Authorization:** Bearer Token  
 **Request Body:**
@@ -494,7 +501,7 @@
 }
 ```
 
-#### 17. Toggle Favorite Schulsozialarbeit
+#### 17. Get Distance
 
 **Endpoint:** `/api/user/get-distance`  
 **Description:** Return the distance between two coordinates in kilometers
@@ -523,19 +530,12 @@
 **Description:** Soft delete the user and all associated addresses
 **Method:** DELETE  
 **Authorization:** Bearer Token  
-**Request Body:**
-
-```json
-{
-  "coords1": { "latitude": "number", "longitude": "number" },
-  "coords2": { "latitude": "number", "longitude": "number" }
-}
-```
+**Request Body:** None
 
 **Response (200 OK):**
 
 ```json
 {
-  "distance": "number"
+  "message": "string"
 }
 ```
