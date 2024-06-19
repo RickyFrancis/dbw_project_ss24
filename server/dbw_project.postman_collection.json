@@ -1,0 +1,669 @@
+{
+	"info": {
+		"_postman_id": "fe43ca89-054e-4098-b10f-b3e14f15be17",
+		"name": "dbw_project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13198030"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"rickyfrancisrozario22@gmail.com\",\n  \"name\": \"Ricky Francis Rozario\",\n  \"password\": \"rickyfrancisrozario\",\n  \"addresses\": [\n    {\n      \"street\": \"Vetterstrasse\",\n      \"street2\": \"54\",\n      \"city\": \"Chemnitz\",\n      \"state\": \"Saxony\",\n      \"postalCode\": \"09126\",\n      \"country\": \"Germany\"\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user"
+					]
+				},
+				"description": "### User Creation Endpoint\n\nThis endpoint allows the creation of a new user with the provided information.\n\n#### Request Body\n\n- `email` (string, required): The email address of the user.\n    \n- `name` (string, required): The name of the user.\n    \n- `password` (string, required): The password for the user.\n    \n- `addresses` (array, required): An array of user addresses, each containing the following fields:\n    \n    - `street` (string, required): The street address.\n        \n    - `street2` (string, optional): Additional street information.\n        \n    - `city` (string, required): The city of the address.\n        \n    - `state` (string, required): The state of the address.\n        \n    - `postalCode` (string, required): The postal code of the address.\n        \n    - `country` (string, required): The country of the address.\n        \n\n#### Response (200 - OK)\n\nThe response will be a JSON object with the following schema:\n\n``` json\n{\n  \"id\": 0,\n  \"email\": \"\",\n  \"name\": \"\",\n  \"deleted\": false,\n  \"createdAt\": \"\",\n  \"updatedAt\": \"\",\n  \"addresses\": [\n    {\n      \"id\": 0,\n      \"street\": \"\",\n      \"street2\": \"\",\n      \"city\": \"\",\n      \"state\": \"\",\n      \"postalCode\": \"\",\n      \"country\": \"\",\n      \"deleted\": false,\n      \"nominatim\": null,\n      \"userId\": 0,\n      \"primaryAddress\": true,\n      \"createdAt\": \"\",\n      \"updatedAt\": \"\"\n    }\n  ],\n  \"favoriteSozial\": [],\n  \"favoriteJugend\": [],\n  \"favoriteSchules\": [],\n  \"favoriteKinder\": [],\n  \"token\": \"\"\n}\n\n ```\n\n#### Related Responses\n\n- The response from other endpoints within this API will have a similar data model, with the possibility of additional fields such as `nominatim` for addresses."
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"token\", pm.response.json().token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"rickyfrancisrozario@gmail.com\",\n  \"password\": \"rickyfrancisrozario\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				},
+				"description": "# Login Endpoint\n\nThis endpoint allows users to log in by providing their email and password.\n\n## Request\n\n### Method\n\n`POST`\n\n### URL\n\n`http://localhost:5000/login`\n\n### Headers\n\nNo specific headers provided.\n\n### Body\n\n- `email` (string, required): The email of the user.\n    \n- `password` (string, required): The password of the user.\n    \n\n## Response\n\n### Status\n\n`200`\n\n### Headers\n\n- `Content-Type`: `application/json`\n    \n\n### Body\n\n``` json\n{\n    \"id\": 0,\n    \"email\": \"\",\n    \"name\": \"\",\n    \"deleted\": true,\n    \"createdAt\": \"\",\n    \"updatedAt\": \"\",\n    \"addresses\": [],\n    \"favoriteSozial\": [],\n    \"favoriteJugend\": [],\n    \"favoriteSchules\": [],\n    \"favoriteKinder\": [],\n    \"token\": \"\"\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "GET User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "### Get User Details\n\nThis endpoint allows you to retrieve user details.\n\n#### Request\n\n- Method: GET\n    \n- URL: `http://localhost:5000/api/user`\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\n``` json\n{\n    \"id\": 0,\n    \"email\": \"\",\n    \"name\": \"\",\n    \"deleted\": true,\n    \"createdAt\": \"\",\n    \"updatedAt\": \"\",\n    \"addresses\": [],\n    \"favoriteSozial\": [],\n    \"favoriteJugend\": [],\n    \"favoriteSchules\": [],\n    \"favoriteKinder\": []\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvYUBnbWFpbC5jb20iLCJpYXQiOjE3MTg0ODkyMDUsImV4cCI6MTcxODU3NTYwNX0.H3EuKGWEdI5Hqylcr3ywb4CyksqeOc-tWxE6GF3-QQQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODczNDcwMywiZXhwIjoxNzE4ODIxMTAzfQ.LN13iNh2TtH_gc8SqfOv2UnM7t_DGMbRSo9gg4FCiQ0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"rickyfrancisrozarioa\",\n  \"name\": \"Ricky Francis Rozario 9999\",\n  \"password\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "This endpoint allows updating user information via an HTTP PUT request to [http://localhost:5000/api/user](http://localhost:5000/api/user). The request should include a raw JSON body with the user's email, name, and password.\n\n### Request Body\n\n- `email`: (string) The user's email.\n    \n- `name`: (string) The user's name.\n    \n- `password`: (string) The user's password.\n    \n\n### Response\n\nUpon a successful update, the endpoint returns a 200 status code along with the updated user information in JSON format, including the user's ID, email, name, deletion status, creation and update timestamps, and a token.\n\nExample Response:\n\n``` json\n{\n    \"id\": 0,\n    \"email\": \"\",\n    \"name\": \"\",\n    \"deleted\": true,\n    \"createdAt\": \"\",\n    \"updatedAt\": \"\",\n    \"token\": \"\"\n}\n\n ```\n\nFor related responses from other methods and endpoints, the data models are largely similar, with additional user addresses and favorites included in the response.\n\nExample Related Response:\n\n``` json\n{\n    \"id\": 0,\n    \"email\": \"\",\n    \"name\": \"\",\n    \"deleted\": true,\n    \"createdAt\": \"\",\n    \"updatedAt\": \"\",\n    \"addresses\": [],\n    \"favoriteSozial\": [],\n    \"favoriteJugend\": [],\n    \"favoriteSchules\": [],\n    \"favoriteKinder\": []\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Address",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"street\": \"Vettersstrasse\",\n  \"street2\": \"54\",\n  \"city\": \"Chemnitz\",\n  \"state\": \"Saxony\",\n  \"postalCode\": \"09126\",\n  \"country\": \"Germany\",\n  \"primaryAddress\": false\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/user/address",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"address"
+					]
+				},
+				"description": "### POST /api/user/address\n\nThis endpoint is used to create a new user address.\n\n#### Request Body\n\n- `street` (string, optional): The street name.\n    \n- `street2` (string, optional): Additional street information.\n    \n- `city` (string, optional): The city name.\n    \n- `state` (string, optional): The state name.\n    \n- `postalCode` (string, optional): The postal code.\n    \n- `country` (string, optional): The country name.\n    \n- `primaryAddress` (boolean, required): Indicates if this is the primary address.\n    \n\n#### Response\n\nThe response is in JSON format and follows the schema below:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"id\": { \"type\": \"integer\" },\n    \"street\": { \"type\": \"string\" },\n    \"street2\": { \"type\": \"string\" },\n    \"city\": { \"type\": \"string\" },\n    \"state\": { \"type\": \"string\" },\n    \"postalCode\": { \"type\": \"string\" },\n    \"country\": { \"type\": \"string\" },\n    \"deleted\": { \"type\": \"boolean\" },\n    \"nominatim\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"place_id\": { \"type\": \"integer\" },\n        \"licence\": { \"type\": \"string\" },\n        \"osm_type\": { \"type\": \"string\" },\n        \"osm_id\": { \"type\": \"integer\" },\n        \"lat\": { \"type\": \"string\" },\n        \"lon\": { \"type\": \"string\" },\n        \"class\": { \"type\": \"string\" },\n        \"type\": { \"type\": \"string\" },\n        \"place_rank\": { \"type\": \"integer\" },\n        \"importance\": { \"type\": \"integer\" },\n        \"addresstype\": { \"type\": \"string\" },\n        \"name\": { \"type\": \"string\" },\n        \"display_name\": { \"type\": \"string\" },\n        \"address\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"road\": { \"type\": \"string\" },\n            \"suburb\": { \"type\": \"string\" },\n            \"city\": { \"type\": \"string\" },\n            \"state\": { \"type\": \"string\" },\n            \"ISO3166-2-lvl4\": { \"type\": \"string\" },\n            \"postcode\": { \"type\": \"string\" },\n            \"country\": { \"type\": \"string\" },\n            \"country_code\": { \"type\": \"string\" }\n          }\n        },\n        \"boundingbox\": {\n          \"type\": \"array\",\n          \"items\": { \"type\": \"string\" }\n        },\n        \"svg\": { \"type\": \"string\" }\n      }\n    },\n    \"userId\": { \"type\": \"integer\" },\n    \"primaryAddress\": { \"type\": \"boolean\" },\n    \"createdAt\": { \"type\": \"string\" },\n    \"updatedAt\": { \"type\": \"string\" }\n  }\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Address",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/user/address/18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"address",
+						"18"
+					]
+				},
+				"description": "### Get User Address Details\n\nThis endpoint retrieves the address details for a specific user.\n\n#### Request\n\n- Method: GET\n    \n- Endpoint: `http://localhost:5000/api/user/address/18`\n    \n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n- Body:\n    \n    ``` json\n      {\n          \"id\": 0,\n          \"street\": \"\",\n          \"street2\": \"\",\n          \"city\": \"\",\n          \"state\": \"\",\n          \"postalCode\": \"\",\n          \"country\": \"\",\n          \"deleted\": true,\n          \"nominatim\": {\n              \"place_id\": 0,\n              \"licence\": \"\",\n              \"osm_type\": \"\",\n              \"osm_id\": 0,\n              \"lat\": \"\",\n              \"lon\": \"\",\n              \"class\": \"\",\n              \"type\": \"\",\n              \"place_rank\": 0,\n              \"importance\": 0,\n              \"addresstype\": \"\",\n              \"name\": \"\",\n              \"display_name\": \"\",\n              \"address\": {\n                  \"house_number\": \"\",\n                  \"road\": \"\",\n                  \"suburb\": \"\",\n                  \"city\": \"\",\n                  \"state\": \"\",\n                  \"ISO3166-2-lvl4\": \"\",\n                  \"postcode\": \"\",\n                  \"country\": \"\",\n                  \"country_code\": \"\"\n              },\n              \"boundingbox\": [\"\"],\n              \"svg\": \"\"\n          },\n          \"userId\": 0,\n          \"primaryAddress\": true,\n          \"createdAt\": \"\",\n          \"updatedAt\": \"\"\n      }\n    \n     ```\n    \n\n#### Related Responses\n\nThe response from other endpoints of this API contains similar address details along with additional user information."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Address",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/user/address/19",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"address",
+						"19"
+					]
+				},
+				"description": "### Delete User Address\n\nThe `DELETE` request is used to delete a specific user address by its ID.\n\n#### Request Body\n\nThis request does not require a request body.\n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\n##### Response Body\n\nThe response will contain a JSON object with a `message` key indicating the status of the operation.\n\nExample:\n\n``` json\n{\n    \"message\": \"\"\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Address",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"street\": \"Reichenhainer Straße 51\",\n    \"street2\": \"51\",\n    \"city\": \"Chemnitz\",\n    \"state\": \"Saxony\",\n    \"postalCode\": \"09126\",\n    \"country\": \"Germany\",\n    \"userId\": 7,\n    \"primaryAddress\": true,\n    \"createdAt\": \"2024-06-15T20:12:06.141Z\",\n    \"updatedAt\": \"2024-06-15T20:12:06.141Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/user/address/18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"address",
+						"18"
+					]
+				},
+				"description": "## API Request Description\n\nThis API endpoint is a HTTP PUT request to update the address of a specific user. The request should include a JSON payload in the raw request body, containing the address details such as street, city, state, postal code, country, user ID, primary address indicator, and timestamps.\n\n### Request Body\n\n- `street` (string): The street address.\n    \n- `street2` (string): Additional street address details.\n    \n- `city` (string): The city name.\n    \n- `state` (string): The state or region name.\n    \n- `postalCode` (string): The postal code.\n    \n- `country` (string): The country name.\n    \n- `userId` (number): The ID of the user.\n    \n- `primaryAddress` (boolean): Indicates if this is the primary address.\n    \n- `createdAt` (string): Timestamp for creation.\n    \n- `updatedAt` (string): Timestamp for last update.\n    \n\n### Response\n\nThe response is in JSON format and includes the updated address details along with additional metadata. The response schema is as follows:\n\n``` json\n{\n  \"id\": number,\n  \"street\": string,\n  \"street2\": string,\n  \"city\": string,\n  \"state\": string,\n  \"postalCode\": string,\n  \"country\": string,\n  \"deleted\": boolean,\n  \"nominatim\": {\n    \"place_id\": number,\n    \"licence\": string,\n    \"osm_type\": string,\n    \"osm_id\": number,\n    \"lat\": string,\n    \"lon\": string,\n    \"class\": string,\n    \"type\": string,\n    \"place_rank\": number,\n    \"importance\": number,\n    \"addresstype\": string,\n    \"name\": string,\n    \"display_name\": string,\n    \"address\": {\n      \"house_number\": string,\n      \"road\": string,\n      \"suburb\": string,\n      \"city\": string,\n      \"state\": string,\n      \"ISO3166-2-lvl4\": string,\n      \"postcode\": string,\n      \"country\": string,\n      \"country_code\": string\n    },\n    \"boundingbox\": [string],\n    \"svg\": string\n  },\n  \"userId\": number,\n  \"primaryAddress\": boolean,\n  \"createdAt\": string,\n  \"updatedAt\": string\n}\n\n ```\n\n### Related Responses\n\n- The related responses from other endpoints of this API are largely similar, providing user details, address information, and other related data."
+			},
+			"response": []
+		},
+		{
+			"name": "GET schule",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/schule",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"schule"
+					],
+					"query": [
+						{
+							"key": "BEZEICHNUNG",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "STRASSE",
+							"value": "Straße 58",
+							"disabled": true
+						}
+					]
+				},
+				"description": "The endpoint retrieves information about a school. The response is in JSON format and includes an array of objects with details about the school. Each object contains properties such as id, API_OBJECTID, API_ID, TYP, ART, STANDORTTYP, BEZEICHNUNG, BEZEICHNUNGZUSATZ, KURZBEZEICHNUNG, STRASSE, PLZ, ORT, TELEFON, FAX, EMAIL, PROFILE, SPRACHEN, WWW, TRAEGER, TRAEGERTYP, BEZUGNR, GEBIETSARTNUMMER, SNUMMER, NUMMER, GlobalID, CreationDate, Creator, EditDate, Editor, x, y, nominatim, facilityType, createdAt, and updatedAt. Each property may have different data types and constraints.\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"count\": {\n      \"type\": \"integer\"\n    },\n    \"data\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"id\": {\n            \"type\": \"integer\"\n          },\n          \"API_OBJECTID\": {\n            \"type\": \"integer\"\n          },\n          \"API_ID\": {\n            \"type\": \"integer\"\n          },\n          \"TYP\": {\n            \"type\": \"integer\"\n          },\n          \"ART\": {\n            \"type\": \"string\"\n          },\n          \"STANDORTTYP\": {\n            \"type\": \"string\"\n          },\n          \"BEZEICHNUNG\": {\n            \"type\": \"string\"\n          },\n          \"BEZEICHNUNGZUSATZ\": {\n            \"type\": [\"string\", \"null\"]\n          },\n          \"KURZBEZEICHNUNG\": {\n            \"type\": \"string\"\n          },\n          \"STRASSE\": {\n            \"type\": \"string\"\n          },\n          \"PLZ\": {\n            \"type\": \"string\"\n          },\n          \"ORT\": {\n            \"type\": \"string\"\n          },\n          \"TELEFON\": {\n            \"type\": \"string\"\n          },\n          \"FAX\": {\n            \"type\": \"string\"\n          },\n          \"EMAIL\": {\n            \"type\": \"string\"\n          },\n          \"PROFILE\": {\n            \"type\": \"string\"\n          },\n          \"SPRACHEN\": {\n            \"type\": [\"array\", \"null\"]\n          },\n          \"WWW\": {\n            \"type\": \"string\"\n          },\n          \"TRAEGER\": {\n            \"type\": \"string\"\n          },\n          \"TRAEGERTYP\": {\n            \"type\": \"integer\"\n          },\n          \"BEZUGNR\": {\n            \"type\": \"string\"\n          },\n          \"GEBIETSARTNUMMER\": {\n            \"type\": \"integer\"\n          },\n          \"SNUMMER\": {\n            \"type\": \"integer\"\n          },\n          \"NUMMER\": {\n            \"type\": \"integer\"\n          },\n          \"GlobalID\": {\n            \"type\": \"string\"\n          },\n          \"CreationDate\": {\n            \"type\": \"string\"\n          },\n          \"Creator\": {\n            \"type\": \"string\"\n          },\n          \"EditDate\": {\n            \"type\": \"string\"\n          },\n          \"Editor\": {\n            \"type\": \"string\"\n          },\n          \"x\": {\n            \"type\": \"integer\"\n          },\n          \"y\": {\n            \"type\": \"integer\"\n          },\n          \"nominatim\": {\n            \"type\": [\"object\", \"null\"]\n          },\n          \"facilityType\": {\n            \"type\": \"string\"\n          },\n          \"createdAt\": {\n            \"type\": \"string\"\n          },\n          \"updatedAt\": {\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"id\",\n          \"API_OBJECTID\",\n          \"API_ID\",\n          \"TYP\",\n          \"ART\",\n          \"STANDORTTYP\",\n          \"BEZEICHNUNG\",\n          \"KURZBEZEICHNUNG\",\n          \"STRASSE\",\n          \"PLZ\",\n          \"ORT\",\n          \"TELEFON\",\n          \"FAX\",\n          \"EMAIL\",\n          \"PROFILE\",\n          \"WWW\",\n          \"TRAEGER\",\n          \"TRAEGERTYP\",\n          \"BEZUGNR\",\n          \"GEBIETSARTNUMMER\",\n          \"SNUMMER\",\n          \"NUMMER\",\n          \"GlobalID\",\n          \"CreationDate\",\n          \"Creator\",\n          \"EditDate\",\n          \"Editor\",\n          \"x\",\n          \"y\",\n          \"facilityType\",\n          \"createdAt\",\n          \"updatedAt\"\n        ]\n      }\n    }\n  },\n  \"required\": [\"count\", \"data\"]\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "GET kindertageseinrichtung",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU3NDQzNywiZXhwIjoxNzE4NjYwODM3fQ.2mxcnptnsLDCwX78N9STVBgeSMETIzk17_uqLovuaa4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/kindertageseinrichtung",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"kindertageseinrichtung"
+					],
+					"query": [
+						{
+							"key": "BEZEICHNUNG",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "STRASSE",
+							"value": "Straße 58",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET schulsozialarbeit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/schulsozialarbeit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"schulsozialarbeit"
+					],
+					"query": [
+						{
+							"key": "BEZEICHNUNG",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "STRASSE",
+							"value": "Straße 58",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET jugendberufshilfe",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/jugendberufshilfe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"jugendberufshilfe"
+					],
+					"query": [
+						{
+							"key": "BEZEICHNUNG",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "STRASSE",
+							"value": "Straße 58",
+							"disabled": true
+						}
+					]
+				},
+				"description": "\n    \n### GET /api/jugendberufshilfe\n\nThis endpoint retrieves Jugendberufshilfe data.\n\n#### Request\n\nThere are no request parameters for this endpoint.\n\n#### Response\n\nThe response will be in JSON format with the following schema:\n\n```json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"count\": {\n            \"type\": \"integer\"\n        },\n        \"data\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"id\": {\n                        \"type\": \"integer\"\n                    },\n                    \"API_OBJECTID\": {\n                        \"type\": \"integer\"\n                    },\n                    \"API_ID\": {\n                        \"type\": \"integer\"\n                    },\n                    \"TRAEGER\": {\n                        \"type\": \"string\"\n                    },\n                    \"LEISTUNGEN\": {\n                        \"type\": \"string\"\n                    },\n                    \"BEZEICHNUNG\": {\n                        \"type\": [\"string\", \"null\"]\n                    },\n                    \"KURZBEZEICHNUNG\": {\n                        \"type\": [\"string\", \"null\"]\n                    },\n                    \"STRASSE\": {\n                        \"type\": \"string\"\n                    },\n                    \"PLZ\": {\n                        \"type\": \"string\"\n                    },\n                    \"ORT\": {\n                        \"type\": \"string\"\n                    },\n                    \"TELEFON\": {\n                        \"type\": \"string\"\n                    },\n                    \"EMAIL\": {\n                        \"type\": [\"string\", \"null\"]\n                    },\n                    \"FAX\": {\n                        \"type\": \"string\"\n                    },\n                    \"x\": {\n                        \"type\": \"integer\"\n                    },\n                    \"y\": {\n                        \"type\": \"integer\"\n                    },\n                    \"nominatim\": {\n                        \"type\": [\"string\", \"null\"]\n                    },\n                    \"facilityType\": {\n                        \"type\": \"string\"\n                    },\n                    \"createdAt\": {\n                        \"type\": \"string\"\n                    },\n                    \"updatedAt\": {\n                        \"type\": \"string\"\n                    }\n                },\n                \"required\": [\"id\", \"API_OBJECTID\", \"API_ID\", \"TRAEGER\", \"LEISTUNGEN\", \"STRASSE\", \"PLZ\", \"ORT\", \"TELEFON\", \"FAX\", \"x\", \"y\", \"facilityType\", \"createdAt\", \"updatedAt\"]\n            }\n        }\n    },\n    \"required\": [\"count\", \"data\"]\n}\n```\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Toggle Favorite Jugend",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/user/toggle-favorite-jugend/100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"toggle-favorite-jugend",
+						"100"
+					]
+				},
+				"description": "### POST /api/user/toggle-favorite-jugend/5\n\nThis endpoint is used to toggle the favorite status of a specific item for a user.\n\n#### Request Body\n\n- No request body parameters required.\n    \n\n#### Response\n\nThe response is a JSON object with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"message\": {\n            \"type\": \"string\"\n        }\n    }\n}\n\n ```\n\n- `message` (string) - A message indicating the result of the operation."
+			},
+			"response": []
+		},
+		{
+			"name": "Toggle Favorite Schule",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU2OTUyOCwiZXhwIjoxNzE4NjU1OTI4fQ.vDxHnJ7TjIAb69vlBOBTv4Mjmw4lh0UJCNzp1WdnxsY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/user/toggle-favorite-schule/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"toggle-favorite-schule",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Toggle Favorite Kinder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU2OTUyOCwiZXhwIjoxNzE4NjU1OTI4fQ.vDxHnJ7TjIAb69vlBOBTv4Mjmw4lh0UJCNzp1WdnxsY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/user/toggle-favorite-kinder/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"toggle-favorite-kinder",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Toggle Favorite Sozial",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU2OTUyOCwiZXhwIjoxNzE4NjU1OTI4fQ.vDxHnJ7TjIAb69vlBOBTv4Mjmw4lh0UJCNzp1WdnxsY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/user/toggle-favorite-sozial/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"toggle-favorite-sozial",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET distance",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"coords1\":{ \"latitude\": 50.8182128, \"longitude\": 12.933595635238863 },\n  \"coords2\":{ \"latitude\": 50.79227491024383, \"longitude\": 12.887276265842216 }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/user/get-distance",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"get-distance"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

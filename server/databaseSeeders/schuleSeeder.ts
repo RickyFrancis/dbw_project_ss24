@@ -1,4 +1,4 @@
-// seed/schuleSeeder.ts
+// server/databaseSeeders/schuleSeeder.ts
 
 import axios from 'axios';
 import { PrismaClient } from '@prisma/client';
