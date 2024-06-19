@@ -1,0 +1,347 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "dbw_project",
+    "collectionId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+    "dateExported": "2024-06-19T07:50:53.861Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "49f46d3f-4c47-4148-94db-343b47971af6",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "Create User",
+            "url": "http://localhost:5000/user",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-06-05T10:46:10.961Z",
+            "modified": "2024-06-15T20:30:11.086Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"rickyfrancisrozarioa@gmail.com\",\n  \"name\": \"Ricky Francis Rozario\",\n  \"password\": \"rickyfrancisrozario\",\n  \"addresses\": [\n    {\n      \"street\": \"Vetterstrasse\",\n      \"street2\": \"54\",\n      \"city\": \"Chemnitz\",\n      \"state\": \"Saxony\",\n      \"postalCode\": \"09126\",\n      \"country\": \"Germany\"\n    }\n  ]\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "573b487c-49f7-48fd-b17f-1a5404a22289",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "GET schule",
+            "url": "http://localhost:5000/api/schule",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-06-05T10:54:17.693Z",
+            "modified": "2024-06-16T21:48:05.617Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "BEZEICHNUNG",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "STRASSE",
+                    "value": "Straße 58",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU3NDQzNywiZXhwIjoxNzE4NjYwODM3fQ.2mxcnptnsLDCwX78N9STVBgeSMETIzk17_uqLovuaa4"
+            }
+        },
+        {
+            "_id": "39f8ef17-5708-4ebf-a71d-4226f0804e36",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "Create Address",
+            "url": "http://localhost:5000/api/user/address",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-06-15T20:32:24.782Z",
+            "modified": "2024-06-17T15:53:29.504Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"street\": \"Vettersstrasse\",\n  \"street2\": \"54\",\n  \"city\": \"Chemnitz\",\n  \"state\": \"Saxony\",\n  \"postalCode\": \"09126\",\n  \"country\": \"Germany\",\n  \"primaryAddress\": false\n}\n",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU1NjExNCwiZXhwIjoxNzE4NjQyNTE0fQ.HAlOepjAfhKwkuvxpNdi5nVWD-7Eq3ytV4FLQnJCrm4"
+            }
+        },
+        {
+            "_id": "83c6ad43-cec1-4d03-b349-ec1627365e87",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "GET schulsozialarbeit",
+            "url": "http://localhost:5000/api/schulsozialarbeit",
+            "method": "GET",
+            "sortNum": 25000,
+            "created": "2024-06-12T20:50:52.118Z",
+            "modified": "2024-06-12T20:52:00.692Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "BEZEICHNUNG",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "STRASSE",
+                    "value": "Straße 58",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODIyNTUwNCwiZXhwIjoxNzE4MzExOTA0fQ.cS8HgK8znon8KoJzvb-vcCpoQFgHvP3cmpebdNr3Fzs"
+            }
+        },
+        {
+            "_id": "ee3fee80-65f3-4be3-aa85-eee8bdc8b1fd",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "Login",
+            "url": "http://localhost:5000/login",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-06-05T11:01:52.043Z",
+            "modified": "2024-06-09T21:17:09.893Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"rickyfrancisrozario@gmail.com\",\n  \"password\": \"rickyfrancisrozario\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "324cb026-e042-431e-a27c-de390fe16c48",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "Toggle Favorite Jugend",
+            "url": "http://localhost:5000/api/user/toggle-favorite-jugend/1",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-06-15T21:58:18.044Z",
+            "modified": "2024-06-16T20:25:40.352Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU2OTUyOCwiZXhwIjoxNzE4NjU1OTI4fQ.vDxHnJ7TjIAb69vlBOBTv4Mjmw4lh0UJCNzp1WdnxsY"
+            }
+        },
+        {
+            "_id": "ff53d704-b478-4313-8542-73ade05e0270",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "GET kindertageseinrichtung",
+            "url": "http://localhost:5000/api/kindertageseinrichtung",
+            "method": "GET",
+            "sortNum": 35000,
+            "created": "2024-06-16T21:47:11.047Z",
+            "modified": "2024-06-16T21:47:30.402Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "BEZEICHNUNG",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "STRASSE",
+                    "value": "Straße 58",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU3NDQzNywiZXhwIjoxNzE4NjYwODM3fQ.2mxcnptnsLDCwX78N9STVBgeSMETIzk17_uqLovuaa4"
+            }
+        },
+        {
+            "_id": "a86057d9-b61b-4fbe-89d2-d81994afd561",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "GET User",
+            "url": "http://localhost:5000/api/user",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-06-11T17:29:37.470Z",
+            "modified": "2024-06-16T20:36:33.002Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU2OTUyOCwiZXhwIjoxNzE4NjU1OTI4fQ.vDxHnJ7TjIAb69vlBOBTv4Mjmw4lh0UJCNzp1WdnxsY"
+            }
+        },
+        {
+            "_id": "6337cb13-be68-4981-a078-0b922bbb12a8",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "Toggle Favorite Schule",
+            "url": "http://localhost:5000/api/user/toggle-favorite-schule/2",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-06-16T07:27:58.360Z",
+            "modified": "2024-06-16T20:58:02.062Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU2OTUyOCwiZXhwIjoxNzE4NjU1OTI4fQ.vDxHnJ7TjIAb69vlBOBTv4Mjmw4lh0UJCNzp1WdnxsY"
+            }
+        },
+        {
+            "_id": "348fec5b-2b07-40e6-9b93-3f668730192c",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "GET Address",
+            "url": "http://localhost:5000/api/user/address/2",
+            "method": "GET",
+            "sortNum": 45000,
+            "created": "2024-06-15T20:18:39.156Z",
+            "modified": "2024-06-15T21:03:01.373Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvYUBnbWFpbC5jb20iLCJpYXQiOjE3MTg0ODUyMjMsImV4cCI6MTcxODU3MTYyM30.iM19n1p3BY1PWTIio2LxiU_3kw2J_xsoq5XPTZLxsfg"
+            }
+        },
+        {
+            "_id": "13893135-6bc1-4fbd-b007-3c1f397aceb7",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "Delete User",
+            "url": "http://localhost:5000/api/user",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-06-14T18:56:27.550Z",
+            "modified": "2024-06-16T20:25:20.449Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvYUBnbWFpbC5jb20iLCJpYXQiOjE3MTg0ODkyMDUsImV4cCI6MTcxODU3NTYwNX0.H3EuKGWEdI5Hqylcr3ywb4CyksqeOc-tWxE6GF3-QQQ"
+            }
+        },
+        {
+            "_id": "cdd40119-cd2b-4bf9-b1c7-75b269a58edc",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "Toggle Favorite Kinder",
+            "url": "http://localhost:5000/api/user/toggle-favorite-kinder/1",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-06-16T09:33:47.085Z",
+            "modified": "2024-06-16T20:27:09.073Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU2OTUyOCwiZXhwIjoxNzE4NjU1OTI4fQ.vDxHnJ7TjIAb69vlBOBTv4Mjmw4lh0UJCNzp1WdnxsY"
+            }
+        },
+        {
+            "_id": "76837e33-cf40-4c70-b63e-44ca90285ddd",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "GET distance",
+            "url": "http://localhost:5000/api/user/get-distance/",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-06-17T16:04:28.368Z",
+            "modified": "2024-06-17T16:19:49.351Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"coords1\":{ \"latitude\": 50.8182128, \"longitude\": 12.933595635238863 },\n  \"coords2\":{ \"latitude\": 50.79227491024383, \"longitude\": 12.887276265842216 }\n}\n",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU2OTUyOCwiZXhwIjoxNzE4NjU1OTI4fQ.vDxHnJ7TjIAb69vlBOBTv4Mjmw4lh0UJCNzp1WdnxsY"
+            }
+        },
+        {
+            "_id": "a87286f2-b825-422b-9698-d7f16d0efddd",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "Update User",
+            "url": "http://localhost:5000/api/user",
+            "method": "PUT",
+            "sortNum": 60000,
+            "created": "2024-06-14T19:36:53.146Z",
+            "modified": "2024-06-18T19:01:10.434Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"rickyfrancisrozarioa\",\n  \"name\": \"Ricky Francis Rozario 9999\",\n  \"password\": \"123\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODczNDcwMywiZXhwIjoxNzE4ODIxMTAzfQ.LN13iNh2TtH_gc8SqfOv2UnM7t_DGMbRSo9gg4FCiQ0"
+            }
+        },
+        {
+            "_id": "47c08de9-9ce4-472a-8d48-8ea84039f4c5",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "Delete Address",
+            "url": "http://localhost:5000/api/user/address/3",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-06-15T20:24:38.260Z",
+            "modified": "2024-06-15T21:01:30.741Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvYUBnbWFpbC5jb20iLCJpYXQiOjE3MTg0ODUyMjMsImV4cCI6MTcxODU3MTYyM30.iM19n1p3BY1PWTIio2LxiU_3kw2J_xsoq5XPTZLxsfg"
+            }
+        },
+        {
+            "_id": "e00d29ba-7967-4bf5-9f62-ab67e219e2ce",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "Toggle Favorite Sozial",
+            "url": "http://localhost:5000/api/user/toggle-favorite-sozial/1",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-06-16T09:34:03.734Z",
+            "modified": "2024-06-16T20:27:18.262Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvQGdtYWlsLmNvbSIsImlhdCI6MTcxODU2OTUyOCwiZXhwIjoxNzE4NjU1OTI4fQ.vDxHnJ7TjIAb69vlBOBTv4Mjmw4lh0UJCNzp1WdnxsY"
+            }
+        },
+        {
+            "_id": "a6f52f90-4185-4bdd-98bf-6b0c910969e6",
+            "colId": "c796f331-a35a-4f53-af8e-9fbf8deb7049",
+            "containerId": "",
+            "name": "Update Address",
+            "url": "http://localhost:5000/api/user/address/2",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2024-06-15T20:14:01.235Z",
+            "modified": "2024-06-15T21:03:16.642Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"id\": 5,\n    \"street\": \"Vetterstrasse 9000\",\n    \"street2\": \"54\",\n    \"city\": \"Chemnitz\",\n    \"state\": \"Saxony\",\n    \"postalCode\": \"09126\",\n    \"country\": \"Germany\",\n    \"userId\": 7,\n    \"primaryAddress\": true,\n    \"createdAt\": \"2024-06-15T20:12:06.141Z\",\n    \"updatedAt\": \"2024-06-15T20:12:06.141Z\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyaWNreWZyYW5jaXNyb3phcmlvYUBnbWFpbC5jb20iLCJpYXQiOjE3MTg0ODUyMjMsImV4cCI6MTcxODU3MTYyM30.iM19n1p3BY1PWTIio2LxiU_3kw2J_xsoq5XPTZLxsfg"
+            }
+        }
+    ],
+    "ref": "cxbx8rSIxY6LwTOd_e_E0Cy_9qkOnk3L5RRHtTnoCzTt6c9to1LbiaibxRARpaRz_bXmKNPgXXT2B9mQRgz5ig"
+}

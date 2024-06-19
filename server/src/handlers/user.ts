@@ -42,7 +42,7 @@ export const createNewUser = async (req, res) => {
       state: address.state || null, // Optional field
       postalCode: address.postalCode,
       country: address.country,
-      primaryAddress: address.primaryAddress || false,
+      primaryAddress: address.primaryAddress,
       nominatim: nominatimData.data[0] || null,
     }));
 
@@ -302,7 +302,12 @@ export const updateAddress = async (req, res) => {
     const hasPrimaryAddress = user.addresses.some(
       (address) => address.primaryAddress
     );
-    if (primaryAddress && hasPrimaryAddress) {
+
+    const thisAddressIsPrimary = user.addresses.some(
+      (address) => address.primaryAddress && address.id === parseInt(addressId)
+    );
+
+    if (primaryAddress && hasPrimaryAddress && !thisAddressIsPrimary) {
       return res
         .status(400)
         .json({ message: 'You already have a primary address' });
@@ -442,28 +447,20 @@ export const toggleFavoriteJugend = async (req, res) => {
 
     if (isFavorite) {
       // Remove the Jugendberufshilfe from the user's favorites
-      const updatedUser = await prisma.user.update({
+      await prisma.user.update({
         where: { id: userId },
         data: {
           favoriteJugend: {
             disconnect: { id: jugendberufshilfe_id }, // Disconnects relation if it's currently a favorite
           },
         },
-        include: {
-          addresses: true,
-          favoriteSozial: true,
-          favoriteJugend: true,
-          favoriteSchules: true,
-          favoriteKinder: true,
-        },
       });
       return res.status(200).json({
         message: 'Jugendberufshilfe removed from favorites successfully.',
-        updatedUser,
       });
     } else {
       // Add the Jugendberufshilfe to the user's favorites
-      const updatedUser = await prisma.user.update({
+      await prisma.user.update({
         where: { id: userId },
         data: {
           favoriteJugend: {
@@ -480,7 +477,6 @@ export const toggleFavoriteJugend = async (req, res) => {
       });
       return res.status(201).json({
         message: 'Jugendberufshilfe added to favorites successfully.',
-        updatedUser,
       });
     }
   } catch (error) {
@@ -515,7 +511,7 @@ export const toggleFavoriteSchule = async (req, res) => {
 
     if (isFavorite) {
       // Remove the Schule from the user's favorites
-      const updatedUser = await prisma.user.update({
+      await prisma.user.update({
         where: { id: userId },
         data: {
           favoriteSchules: {
@@ -532,11 +528,10 @@ export const toggleFavoriteSchule = async (req, res) => {
       });
       return res.status(200).json({
         message: 'Schule removed from favorites successfully.',
-        updatedUser,
       });
     } else {
       // Add the Schule to the user's favorites
-      const updatedUser = await prisma.user.update({
+      await prisma.user.update({
         where: { id: userId },
         data: {
           favoriteSchules: {
@@ -553,7 +548,6 @@ export const toggleFavoriteSchule = async (req, res) => {
       });
       return res.status(201).json({
         message: 'Schule added to favorites successfully.',
-        updatedUser,
       });
     }
   } catch (error) {
@@ -588,7 +582,7 @@ export const toggleFavoriteKinder = async (req, res) => {
 
     if (isFavorite) {
       // Remove the Kinder from the user's favorites
-      const updatedUser = await prisma.user.update({
+      await prisma.user.update({
         where: { id: userId },
         data: {
           favoriteKinder: {
@@ -605,7 +599,6 @@ export const toggleFavoriteKinder = async (req, res) => {
       });
       return res.status(200).json({
         message: 'Kinder removed from favorites successfully.',
-        updatedUser,
       });
     } else {
       // Add the Kinder to the user's favorites
@@ -661,7 +654,7 @@ export const toggleFavoriteSozial = async (req, res) => {
 
     if (isFavorite) {
       // Remove the Sozial from the user's favorites
-      const updatedUser = await prisma.user.update({
+      await prisma.user.update({
         where: { id: userId },
         data: {
           favoriteSozial: {
@@ -678,7 +671,6 @@ export const toggleFavoriteSozial = async (req, res) => {
       });
       return res.status(200).json({
         message: 'Sozial removed from favorites successfully.',
-        updatedUser,
       });
     } else {
       // Add the Sozial to the user's favorites

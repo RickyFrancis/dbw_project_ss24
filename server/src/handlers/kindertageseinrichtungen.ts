@@ -2,38 +2,19 @@ import prisma from '../db';
 
 export const getKindertageseinrichtungen = async (req, res) => {
   try {
-    // Retrieve query parameters
-    const { BEZEICHNUNG, STRASSE } = req.query;
-
-    const queryOptions = {
-      where: {},
-    };
-
-    if (BEZEICHNUNG) {
-      queryOptions.where = {
-        BEZEICHNUNG: {
-          contains: BEZEICHNUNG,
-        },
-      };
-    }
-    if (STRASSE) {
-      queryOptions.where = {
-        STRASSE: {
-          contains: STRASSE,
-        },
-      };
-    }
-
     // Execute the query with Prisma
     const kindertageseinrichtungen =
-      await prisma.kindertageseinrichtung.findMany(queryOptions);
+      await prisma.kindertageseinrichtung.findMany();
 
     // Send the response with the fetched data
-    res.json({ data: kindertageseinrichtungen });
+    return res.status(200).json({
+      count: kindertageseinrichtungen.length,
+      data: kindertageseinrichtungen,
+    });
   } catch (error) {
     console.log(error);
     // Handle any errors during execution
-    res
+    return res
       .status(500)
       .json({ error: 'An error occurred while retrieving the data.' });
   }
